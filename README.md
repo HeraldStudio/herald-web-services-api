@@ -56,7 +56,7 @@
 
 #### 响应
 
-    200 OK HTTP/1.1
+    HTTP/1.1 200 OK
     Content-Type: application/xml;charset=UTF-8
     
     <?xml version="1.0" encoding="UTF-8"?>
