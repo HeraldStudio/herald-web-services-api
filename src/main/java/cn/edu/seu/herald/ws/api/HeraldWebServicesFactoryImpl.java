@@ -23,14 +23,22 @@
  */
 package cn.edu.seu.herald.ws.api;
 
+import cn.edu.seu.herald.ws.api.impl.CurriculumServiceImpl;
+
 /**
  *
  * @author rAy <predator.ray@gmail.com>
  */
-public interface CurriculumService {
+public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
 
-    Curriculum getCurriculum(String cardNumber) throws ServiceException;
+    private static final String CURRICULUM_PATH = "/curriculum";
+    private final String baseResourceUri;
 
-    Curriculum getCurriculum(String cardNumber, String term)
-            throws ServiceException;
+    public HeraldWebServicesFactoryImpl(String baseResourceUri) {
+        this.baseResourceUri = baseResourceUri;
+    }
+
+    public CurriculumService getCurriculumService() {
+        return new CurriculumServiceImpl(baseResourceUri + CURRICULUM_PATH);
+    }
 }

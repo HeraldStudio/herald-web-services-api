@@ -27,10 +27,21 @@ package cn.edu.seu.herald.ws.api;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-public interface CurriculumService {
+public class ServiceException extends RuntimeException {
 
-    Curriculum getCurriculum(String cardNumber) throws ServiceException;
+    public ServiceException() {
+        super("Service exception occurred.");
+    }
 
-    Curriculum getCurriculum(String cardNumber, String term)
-            throws ServiceException;
+    public ServiceException(String msg) {
+        super(msg);
+    }
+
+    public ServiceException(Exception cause) {
+        super("Service exception occurred.", cause);
+    }
+
+    public ServiceException(String msg, Exception cause) {
+        super(msg, cause);
+    }
 }
