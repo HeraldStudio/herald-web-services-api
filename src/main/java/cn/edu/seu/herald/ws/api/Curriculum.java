@@ -48,7 +48,7 @@ public class Curriculum {
     @XmlElementWrapper(name = "courses")
     @XmlElement(name = "course")
     private List<Course> courses;
-    @XmlElement(name = "timeTable")
+    //@XmlElement(name = "timeTable")
     private TimeTable timeTable;
 
     public String getCardNumber() {

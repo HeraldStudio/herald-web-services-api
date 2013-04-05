@@ -22,6 +22,12 @@
  * THE SOFTWARE.
  */
 @javax.xml.bind.annotation.XmlSchema(
-        namespace = "http://herald.seu.edu.cn/ws/curriculum"
-)
+        xmlns = @javax.xml.bind.annotation.XmlNs(
+                prefix = "curr",
+                namespaceURI = "http://herald.seu.edu.cn/ws/curriculum"
+        ),
+        location = "http://herald.seu.edu.cn/ws/curriculum curriculum.xsd",
+        namespace = "http://herald.seu.edu.cn/ws/curriculum",
+        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED
+ )
 package cn.edu.seu.herald.ws.api;

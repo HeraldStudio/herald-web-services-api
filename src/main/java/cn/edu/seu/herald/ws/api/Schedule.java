@@ -23,8 +23,10 @@
  */
 package cn.edu.seu.herald.ws.api;
 
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -36,24 +38,24 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "scheduleType")
 public class Schedule {
 
-    @XmlElement
+    @XmlAttribute
     private Day day;
-    @XmlElement
-    private Attendance attendance;
+    @XmlElement(name = "attendance")
+    private List<Attendance> attendances;
 
     public Day getDay() {
         return day;
     }
 
-    public Attendance getAttendance() {
-        return attendance;
+    public List<Attendance> getAttendances() {
+        return attendances;
     }
 
     void setDay(Day day) {
         this.day = day;
     }
 
-    void setAttendance(Attendance attendance) {
-        this.attendance = attendance;
+    void setAttendances(List<Attendance> attendances) {
+        this.attendances = attendances;
     }
 }

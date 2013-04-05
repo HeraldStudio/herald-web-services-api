@@ -23,12 +23,6 @@
             <credit>2</credit>
             <week from="1" to="8"/>
         </course>
-        <course>
-            <name>XML技术</name>
-            <lecturer>王伟</lecturer>
-            <credit>2</credit>
-            <week from="1" to="8"/>
-        </course>
     </courses>
     <timeTable>
         <schedule day="MON">

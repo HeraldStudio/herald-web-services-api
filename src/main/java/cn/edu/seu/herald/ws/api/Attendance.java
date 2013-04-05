@@ -39,12 +39,12 @@ public class Attendance {
 
     @XmlAttribute
     private String courseName;
-    @XmlElement
-    private Period period;
     @XmlAttribute
     private String place;
     @XmlAttribute
     private StrategyType strategy;
+    @XmlElement
+    private Period period;
 
     public String getCourseName() {
         return courseName;
