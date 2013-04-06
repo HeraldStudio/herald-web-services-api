@@ -29,5 +29,18 @@ package cn.edu.seu.herald.ws.api;
  */
 public enum Day {
 
-    MON, TUE, WED, THU, FRI, SAT, SUN
+    /** 星期一 */
+    MON,
+    /** 星期二 */
+    TUE,
+    /** 星期三 */
+    WED,
+    /** 星期四 */
+    THU,
+    /** 星期五 */
+    FRI,
+    /** 星期六 */
+    SAT,
+    /** 星期日 */
+    SUN
 }
