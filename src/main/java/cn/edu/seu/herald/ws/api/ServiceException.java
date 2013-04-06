@@ -24,7 +24,7 @@
 package cn.edu.seu.herald.ws.api;
 
 /**
- *
+ * 用于描述先声网Web服务交互中发生的错误。
  * @author rAy <predator.ray@gmail.com>
  */
 public class ServiceException extends RuntimeException {

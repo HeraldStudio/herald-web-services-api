@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- *
+ * 课程类，包含课程名称、讲师、学分、上课周次区间。
  * @author rAy <predator.ray@gmail.com>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -45,18 +45,35 @@ public class Course {
     @XmlElement
     private Period week;
 
+    /**
+     * 返回课程的名称
+     * @return 课程的名称
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 返回课程讲师的姓名
+     * @return 讲师
+     */
     public String getLecturer() {
         return lecturer;
     }
 
+    /**
+     * 返回课程的学分，学分以浮点数表示。
+     * @return 学分
+     */
     public double getCredit() {
         return credit;
     }
 
+    /**
+     * 返回课程的上课周次，如1~16周
+     * @see cn.edu.seu.herald.ws.api.Period
+     * @return 上课周次
+     */
     public Period getWeek() {
         return week;
     }

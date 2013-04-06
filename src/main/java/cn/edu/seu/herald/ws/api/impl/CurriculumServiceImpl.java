@@ -36,7 +36,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
 /**
- *
+ * 课程表服务的实现类，基于jersey实现的RESTful Web Services的客户端。
  * @author rAy <predator.ray@gmail.com>
  */
 public class CurriculumServiceImpl implements CurriculumService {

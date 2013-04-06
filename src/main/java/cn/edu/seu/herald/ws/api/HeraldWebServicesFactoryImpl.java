@@ -26,7 +26,7 @@ package cn.edu.seu.herald.ws.api;
 import cn.edu.seu.herald.ws.api.impl.CurriculumServiceImpl;
 
 /**
- *
+ * 先声网Web服务抽象工厂的实现类，返回各产品的具体实现。
  * @author rAy <predator.ray@gmail.com>
  */
 public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
@@ -34,10 +34,18 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
     private static final String CURRICULUM_PATH = "/curriculum";
     private final String baseResourceUri;
 
+    /**
+     * 构造一个该工程的具体示例，需要传递服务的基础资源URI
+     * @param baseResourceUri 基础资源URI
+     */
     public HeraldWebServicesFactoryImpl(String baseResourceUri) {
         this.baseResourceUri = baseResourceUri;
     }
 
+    /**
+     * 返回课程表服务
+     * @return 课程表服务
+     */
     public CurriculumService getCurriculumService() {
         return new CurriculumServiceImpl(baseResourceUri + CURRICULUM_PATH);
     }

@@ -24,7 +24,7 @@
 package cn.edu.seu.herald.ws.api;
 
 /**
- *
+ * 上课的单双周策略
  * @author rAy <predator.ray@gmail.com>
  */
 public enum StrategyType {

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- *
+ * 描述某一天的课程行程
  * @author rAy <predator.ray@gmail.com>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -43,10 +43,20 @@ public class Schedule {
     @XmlElement(name = "attendance")
     private List<Attendance> attendances;
 
+    /**
+     * 返回这是星期几的课程行程
+     * @see cn.edu.seu.herald.ws.api.Day
+     * @return 星期几
+     */
     public Day getDay() {
         return day;
     }
 
+    /**
+     * 返回这天需要上的课程已经对应的时间地点。
+     * @see cn.edu.seu.herald.ws.api.Attendance
+     * @return 学生在某个特点时间段应该上的课的列表
+     */
     public List<Attendance> getAttendances() {
         return attendances;
     }

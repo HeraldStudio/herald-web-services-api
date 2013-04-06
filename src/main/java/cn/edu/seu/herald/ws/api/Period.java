@@ -29,10 +29,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- *
+ * 描述一个时间段，包括周次范围（如，1~16周），课节数范围（如，3~4节）
  * @author rAy <predator.ray@gmail.com>
  */
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "periodType")
 public class Period {
@@ -50,10 +49,18 @@ public class Period {
         this.to = to;
     }
 
+    /**
+     * 返回时间段的开始点
+     * @return 时间段的开始点
+     */
     public int getFrom() {
         return from;
     }
 
+    /**
+     * 返回时间段的结束点
+     * @return 时间段的结束点
+     */
     public int getTo() {
         return to;
     }

@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- *
+ * 上课类，描述了学生在某个特点时间段应该上的课。
  * @author rAy <predator.ray@gmail.com>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -46,18 +46,39 @@ public class Attendance {
     @XmlElement
     private Period period;
 
+    /**
+     * 获取所需上课的名称，该名称是对于
+     * <code>cn.edu.seu.herald.ws.api.Course.getName()</code>
+     * 的引用，并与之一一对应。
+     * @see cn.edu.seu.herald.ws.api.Course#getName()
+     * @return 所需上课的名称
+     */
     public String getCourseName() {
         return courseName;
     }
 
+    /**
+     * 返回上课的节数。是一个时间范围。例如从3~4节。
+     * @see cn.edu.seu.herald.ws.api.Period
+     * @return 上课的节数
+     */
     public Period getPeriod() {
         return period;
     }
 
+    /**
+     * 返回上课的地点。如，九龙湖教八-301
+     * @return 上课的地点
+     */
     public String getPlace() {
         return place;
     }
 
+    /**
+     * 返回上课策略，即单双周。
+     * @see cn.edu.seu.herald.ws.api.StrategyType
+     * @return 上课单双周策略
+     */
     public StrategyType getStrategy() {
         return strategy;
     }

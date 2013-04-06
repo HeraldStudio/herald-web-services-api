@@ -24,10 +24,14 @@
 package cn.edu.seu.herald.ws.api;
 
 /**
- *
+ * 先声网Web服务抽象工厂接口
  * @author rAy <predator.ray@gmail.com>
  */
 public interface HeraldWebServicesFactory {
 
+    /**
+     * 获取课程表服务
+     * @return 课程表服务
+     */
     CurriculumService getCurriculumService();
 }

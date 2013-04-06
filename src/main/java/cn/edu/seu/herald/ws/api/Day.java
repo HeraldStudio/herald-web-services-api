@@ -24,7 +24,7 @@
 package cn.edu.seu.herald.ws.api;
 
 /**
- *
+ * 星期枚举
  * @author rAy <predator.ray@gmail.com>
  */
 public enum Day {

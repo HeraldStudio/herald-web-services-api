@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- *
+ * 课程表类，描述一个学生某个学期的课程表，包含了课程以及课程的具体时间安排。
  * @author rAy <predator.ray@gmail.com>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -51,18 +51,37 @@ public class Curriculum {
     //@XmlElement(name = "timeTable")
     private TimeTable timeTable;
 
+    /**
+     * 该课程表对应学生的一卡通号
+     * @return 一卡通号
+     */
     public String getCardNumber() {
         return cardNumber;
     }
 
+    /**
+     * 该课程表对应学生的学期，学期的表示形式以-为分隔符。
+     * 例如11-12-3表示11至12学年第三学期。
+     * @return 学期
+     */
     public String getTerm() {
         return term;
     }
 
+    /**
+     * 获取所有的课程
+     * @see cn.edu.seu.herald.ws.api.Course
+     * @return 课程列表
+     */
     public List<Course> getCourses() {
         return courses;
     }
 
+    /**
+     * 获取课程的时间安排
+     * @see cn.edu.seu.herald.ws.api.TimeTable
+     * @return 时间表
+     */
     public TimeTable getTimeTable() {
         return timeTable;
     }

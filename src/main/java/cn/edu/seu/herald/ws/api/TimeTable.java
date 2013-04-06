@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- *
+ * 课程表的时间表，包括了星期一至星期日的行程安排。
  * @author rAy <predator.ray@gmail.com>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -40,6 +40,10 @@ public class TimeTable {
     @XmlElement(name = "schedule")
     private List<Schedule> schedules;
 
+    /**
+     * 返回某一天的具体行程
+     * @return 某一天的具体行程
+     */
     public List<Schedule> getSchedules() {
         return schedules;
     }
