@@ -34,9 +34,25 @@
 
 <p>先声网Web服务是先声网对外开放的校园资源接口。基于RESTful Web Services发布。</p>
 
-<h2>接口使用</h2>
+<h2>如何使用</h2>
 
-<p>代码示例：</p>
+<h3>获取源码</h3>
+
+<pre><code>git clone git://github.com/HeraldStudio/herald-web-services-api.git
+cd herald-web-services-api
+mvn install
+</code></pre>
+
+<h3>添加Maven依赖</h3>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;cn.edu.seu.herald&lt;/groupId&gt;
+    &lt;artifactId&gt;herald-web-services-api&lt;/artifactId&gt;
+    &lt;version&gt;{latest version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3>代码示例</h3>
 
 <pre><code>final String HERALD_WS_BASE_URI = "http://herald.seu.edu.cn/ws";
 HeraldWebServicesFactory factory = new HeraldWebServicesFactoryImpl(HERALD_WS_BASE_URI);
@@ -51,7 +67,7 @@ Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 <p>所有可用的资源均可以通过HeraldWebServicesFactory中获取。目前先声网Web服务发布以下资源</p>
 
 <ul>
-<li>课程表资源</li>
+<li>课程表资源（<code>cn.edu.seu.herald.ws.api.CurriculumService</code>）</li>
 </ul><p>（目前处于开发初期，敬请期待更多资源…）</p>
 
 <h2>资源接口描述</h2>
