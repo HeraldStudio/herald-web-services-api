@@ -28,32 +28,120 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h3>什么是先声Web Services</h3>
+          <h1>先声网Web服务API</h1>
 
-<p>先声Web Services是先声网对外开放的校园资源接口。基于RESTful Web Services发布。</p>
+<h2>简介</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>先声网Web服务是先声网对外开放的校园资源接口。基于RESTful Web Services发布。</p>
+
+<h2>接口使用</h2>
+
+<p>代码示例：</p>
+
+<pre><code>final String HERALD_WS_BASE_URI = "http://herald.seu.edu.cn/ws";
+HeraldWebServicesFactory factory = new HeraldWebServicesFactoryImpl(HERALD_WS_BASE_URI);
+CurriculumService curriculumService = factory.getCurriculumService();
+
+String cardNumber = "213000000";
+Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>资源列表</h2>
 
-<h3>Designer Templates</h3>
+<p>所有可用的资源均可以通过HeraldWebServicesFactory中获取。目前先声网Web服务发布以下资源</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ul>
+<li>课程表资源</li>
+</ul><p>（目前处于开发初期，敬请期待更多资源…）</p>
 
-<h3>Rather Drive Stick?</h3>
+<h2>资源接口描述</h2>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>以下为资源接口的RESTful Web Services接口描述。资源调用方式以在该API中提供参考实现。如需要对API扩展，可供参考。</p>
 
-<h3>Authors and Contributors</h3>
+<h3>课程表资源</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<h4>获取课程表</h4>
 
-<h3>Support or Contact</h3>
+<h4>请求</h4>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>GET http://herald.seu.edu.cn/ws/curriculum?cardNumber={一卡通号}&amp;term={学期}
+Accept: application/xml
+</code></pre>
+
+<p>参数列表说明</p>
+
+<table width="100%">
+<tr>
+<td><b>参数名称</b></td>
+        <td><b>参数类型</b></td>
+        <td><b>缺省</b></td>
+    </tr>
+<tr>
+<td>cardNumber</td>
+        <td>query</td>
+        <td>N/A</td>
+    </tr>
+<tr>
+<td>term</td>
+        <td>query</td>
+        <td>当前学期</td>
+    </tr>
+</table><h4>响应</h4>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/xml;charset=UTF-8
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;curriculum xmlns="http://herald.seu.edu.cn/ws/curriculum"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://herlad.seu.edu.cn/ws/curriculum curriculum.xsd"
+    cardNumber="213100434"
+    term="12-13-3"&gt;
+    &lt;courses&gt;
+        &lt;course&gt;
+            &lt;name&gt;IT新技术讲座&lt;/name&gt;
+            &lt;lecturer&gt;&lt;/lecturer&gt;
+            &lt;credit&gt;0.5&lt;/credit&gt;
+            &lt;week from="1" to="16"/&gt;
+        &lt;/course&gt;
+        &lt;course&gt;
+            &lt;name&gt;Web技术及其应用&lt;/name&gt;
+            &lt;lecturer&gt;Xiannong Meng&lt;/lecturer&gt;
+            &lt;credit&gt;2&lt;/credit&gt;
+            &lt;week from="14" to="17"/&gt;
+        &lt;/course&gt;
+        &lt;course&gt;
+            &lt;name&gt;XML技术&lt;/name&gt;
+            &lt;lecturer&gt;王伟&lt;/lecturer&gt;
+            &lt;credit&gt;2&lt;/credit&gt;
+            &lt;week from="1" to="8"/&gt;
+        &lt;/course&gt;
+    &lt;/courses&gt;
+    &lt;timeTable&gt;
+        &lt;schedule day="MON"&gt;
+            &lt;attendance courseName="XML技术" place="九龙湖教四-303"&gt;
+                &lt;period from="1" to="4"/&gt;
+            &lt;/attendance&gt;
+            &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
+                &lt;period from="6" to="7"/&gt;
+            &lt;/attendance&gt;
+        &lt;/schedule&gt;
+        &lt;schedule day="TUE"&gt;
+            &lt;attendance courseName="Web技术及其应用" place="九龙湖教四-303" strategy="ODD"&gt;
+                &lt;period from="1" to="4"/&gt;
+            &lt;/attendance&gt;
+            &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
+                &lt;period from="6" to="7"/&gt;
+            &lt;/attendance&gt;
+            &lt;attendance courseName="XML技术" place="九龙湖教八-401"&gt;
+                &lt;period from="8" to="9"/&gt;
+            &lt;/attendance&gt;
+        &lt;/schedule&gt;
+    &lt;/timeTable&gt;
+&lt;/curriculum&gt;
+</code></pre>
+
+<p>关于返回的XML的Schema，详见项目下<code>/src/test/resources/cn/edu/seu/herald/ws/api/curriculum.xsd</code>或先声网下<a href="http://herald.seu.edu.cn/ws/curriculum.xsd">curriculum.xsd</a>。</p>
         </section>
 
         <aside id="sidebar">
