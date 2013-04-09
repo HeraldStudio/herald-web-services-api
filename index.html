@@ -78,7 +78,7 @@ Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 
 <h4>获取课程表</h4>
 
-<p><strong>请求</strong></p>
+<p><strong>请求：</strong></p>
 
 <pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}
 Accept: application/xml
@@ -94,15 +94,15 @@ Accept: application/xml
     </tr>
 <tr>
 <td>cardNumber</td>
-        <td>query</td>
+        <td>matrix</td>
         <td>N/A</td>
     </tr>
 <tr>
 <td>term</td>
-        <td>query</td>
+        <td>matrix</td>
         <td>当前学期</td>
     </tr>
-</table><p><strong>响应</strong></p>
+</table><p><strong>响应：</strong></p>
 
 <pre><code>HTTP/1.1 200 OK
 Content-Type: application/xml;charset=UTF-8
@@ -161,13 +161,36 @@ Content-Type: application/xml;charset=UTF-8
 
 <p>时间表描述了一周的课程安排。</p>
 
-<p><strong>请求</strong></p>
+<p><strong>请求：</strong></p>
 
 <pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}/timeTable;day={星期}
 Accept: application/xml
 </code></pre>
 
-<p><strong>响应</strong></p>
+<p>参数列表说明</p>
+
+<table width="100%">
+<tr>
+<td><b>参数名称</b></td>
+        <td><b>参数类型</b></td>
+        <td><b>缺省</b></td>
+    </tr>
+<tr>
+<td>cardNumber</td>
+        <td>matrix</td>
+        <td>N/A</td>
+    </tr>
+<tr>
+<td>term</td>
+        <td>matrix</td>
+        <td>当前学期</td>
+    </tr>
+<tr>
+<td>day</td>
+        <td>matrix</td>
+        <td>今天对应的星期</td>
+    </tr>
+</table><p><strong>响应：</strong></p>
 
 <pre><code>HTTP/1.1 200 OK
 Content-Type: application/xml;charset=UTF-8
