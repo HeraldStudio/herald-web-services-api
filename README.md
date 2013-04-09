@@ -30,7 +30,9 @@
     Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 
 ### 2.4 JavaDoc
-使用Maven生成JavaDoc
+[使用在线版](http://heraldstudio.github.io/herald-web-services-api/docs)
+
+或使用Maven生成JavaDoc
 
     mvn javadoc:javadoc
 
