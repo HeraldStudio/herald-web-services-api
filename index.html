@@ -78,9 +78,9 @@ Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 
 <h4>获取课程表</h4>
 
-<h4>请求</h4>
+<p><strong>请求</strong></p>
 
-<pre><code>GET http://herald.seu.edu.cn/ws/curriculum?cardNumber={一卡通号}&amp;term={学期}
+<pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}
 Accept: application/xml
 </code></pre>
 
@@ -102,7 +102,7 @@ Accept: application/xml
         <td>query</td>
         <td>当前学期</td>
     </tr>
-</table><h4>响应</h4>
+</table><p><strong>响应</strong></p>
 
 <pre><code>HTTP/1.1 200 OK
 Content-Type: application/xml;charset=UTF-8
@@ -155,6 +155,47 @@ Content-Type: application/xml;charset=UTF-8
         &lt;/schedule&gt;
     &lt;/timeTable&gt;
 &lt;/curriculum&gt;
+</code></pre>
+
+<h4>时间表资源</h4>
+
+<p>时间表描述了一周的课程安排。</p>
+
+<p><strong>请求</strong></p>
+
+<pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}/timeTable;day={星期}
+Accept: application/xml
+</code></pre>
+
+<p><strong>响应</strong></p>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/xml;charset=UTF-8
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;timeTable xmlns="http://herald.seu.edu.cn/ws/curriculum"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://herlad.seu.edu.cn/ws/curriculum curriculum.xsd"&gt;
+        &lt;schedule day="MON"&gt;
+            &lt;attendance courseName="XML技术" place="九龙湖教四-303"&gt;
+                &lt;period from="1" to="4"/&gt;
+            &lt;/attendance&gt;
+            &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
+                &lt;period from="6" to="7"/&gt;
+            &lt;/attendance&gt;
+        &lt;/schedule&gt;
+        &lt;schedule day="TUE"&gt;
+            &lt;attendance courseName="Web技术及其应用" place="九龙湖教四-303" strategy="ODD"&gt;
+                &lt;period from="1" to="4"/&gt;
+            &lt;/attendance&gt;
+            &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
+                &lt;period from="6" to="7"/&gt;
+            &lt;/attendance&gt;
+            &lt;attendance courseName="XML技术" place="九龙湖教八-401"&gt;
+                &lt;period from="8" to="9"/&gt;
+            &lt;/attendance&gt;
+        &lt;/schedule&gt;
+&lt;/timeTable&gt;
 </code></pre>
 
 <p>关于返回的XML的Schema，详见项目下<code>/src/test/resources/cn/edu/seu/herald/ws/api/curriculum.xsd</code>或先声网下<a href="http://herald.seu.edu.cn/ws/curriculum.xsd">curriculum.xsd</a>。</p>
