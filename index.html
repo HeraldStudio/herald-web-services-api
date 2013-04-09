@@ -72,11 +72,12 @@ Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 <li>课程表（<code>cn.edu.seu.herald.ws.api.Curriculum</code>）</li>
 <li>时间表（<code>cn.edu.seu.herald.ws.api.TimeTable</code>）</li>
 <li>行程安排（<code>cn.edu.seu.herald.ws.api.Schedule</code>）</li>
-<li>下节课（<code>cn.edu.seu.herald.ws.api.Attendance</code>）
-（目前处于开发初期，敬请期待更多资源…）</li>
+<li>下节课（<code>cn.edu.seu.herald.ws.api.Attendance</code>）</li>
 </ul>
 </li>
-</ul><h2>4 资源接口描述</h2>
+</ul><p>（目前处于开发初期，敬请期待更多资源…）</p>
+
+<h2>4 资源接口描述</h2>
 
 <p>以下为资源接口的RESTful Web Services接口描述。资源调用方式以在该API中提供参考实现。如需要对API扩展，可供参考。</p>
 
@@ -226,9 +227,11 @@ Content-Type: application/xml;charset=UTF-8
 
 <p>获取某天要上的课</p>
 
-<p><strong>请求：</strong>
-    GET <a href="http://herald.seu.edu.cn/ws/curriculum;cardNumber=%7B%E4%B8%80%E5%8D%A1%E9%80%9A%E5%8F%B7%7D;term=%7B%E5%AD%A6%E6%9C%9F%7D/timeTable/schedule;day=%7B%E6%98%9F%E6%9C%9F%7D">http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}/timeTable/schedule;day={星期}</a>
-    Accept: application/xml</p>
+<p><strong>请求：</strong></p>
+
+<pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}/timeTable/schedule;day={星期}
+Accept: application/xml
+</code></pre>
 
 <p>参数列表说明</p>
 
