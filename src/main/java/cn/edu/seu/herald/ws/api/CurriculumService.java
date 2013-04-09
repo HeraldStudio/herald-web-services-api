@@ -29,8 +29,83 @@ package cn.edu.seu.herald.ws.api;
  */
 public interface CurriculumService {
 
+    /**
+     * 根据一卡通号获取本学期的课程表
+     * @param cardNumber 学生的一卡通号
+     * @return 本学期的课程表
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.Curriculum
+     */
     Curriculum getCurriculum(String cardNumber) throws ServiceException;
 
+    /**
+     * 根据一卡通号、学期获取课程表
+     * @param cardNumber 学生的一卡通号
+     * @param term 学期，如11-12-3
+     * @return 课程表
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.Curriculum
+     */
     Curriculum getCurriculum(String cardNumber, String term)
             throws ServiceException;
+
+    /**
+     * 根据一卡通号获取本学期的时间表
+     * @param cardNumber 学生的一卡通号
+     * @return 时间表
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.TimeTable
+     */
+    TimeTable getTimeTable(String cardNumber) throws ServiceException;
+
+    /**
+     * 根据一卡通号、学期获取时间表
+     * @param cardNumber 学生的一卡通号
+     * @param term 学期，如11-12-3
+     * @return 时间表
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.TimeTable
+     */
+    TimeTable getTimeTable(String cardNumber, String term)
+            throws ServiceException;
+
+    /**
+     * 根据一卡通号获取今天的课程行程
+     * @param cardNumber 学生的一卡通号
+     * @return 今天的行程
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.Schedule
+     */
+    Schedule getSchedule(String cardNumber) throws ServiceException;
+
+    /**
+     * 根据一卡通、星期几获取课程行程
+     * @param cardNumber 学生的一卡通号
+     * @param day 星期几
+     * @return 对应星期的行程
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.Schedule
+     */
+    Schedule getSchedule(String cardNumber, Day day) throws ServiceException;
+
+    /**
+     * 根据一卡通、学期、星期几获取课程行程
+     * @param cardNumber 学生的一卡通号
+     * @param term 学期，如11-12-3
+     * @param day 星期几
+     * @return 对应学期、星期的行程
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.Schedule
+     */
+    Schedule getSchedule(String cardNumber, String term, Day day)
+            throws ServiceException;
+
+    /**
+     * 根据一卡通号获取下一节要上的课
+     * @param cardNumber 学生的一卡通号
+     * @return 下一节要上的课
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.Attendance
+     */
+    Attendance getNextAttendance(String cardNumber) throws ServiceException;
 }

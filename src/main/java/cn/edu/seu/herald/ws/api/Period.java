@@ -26,6 +26,7 @@ package cn.edu.seu.herald.ws.api;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author rAy <predator.ray@gmail.com>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "period")
 @XmlType(name = "periodType")
 public class Period {
 

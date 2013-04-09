@@ -23,9 +23,13 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
+import cn.edu.seu.herald.ws.api.Attendance;
 import cn.edu.seu.herald.ws.api.Curriculum;
 import cn.edu.seu.herald.ws.api.CurriculumService;
+import cn.edu.seu.herald.ws.api.Day;
+import cn.edu.seu.herald.ws.api.Schedule;
 import cn.edu.seu.herald.ws.api.ServiceException;
+import cn.edu.seu.herald.ws.api.TimeTable;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
@@ -74,5 +78,35 @@ public class CurriculumServiceImpl implements CurriculumService {
         } catch (Exception ex) {
             throw new ServiceException(ex);
         }
+    }
+
+    public TimeTable getTimeTable(String cardNumber) throws ServiceException {
+        MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+        params.add("cardNumber", cardNumber);
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public TimeTable getTimeTable(String cardNumber, String term)
+            throws ServiceException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Schedule getSchedule(String cardNumber) throws ServiceException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Schedule getSchedule(String cardNumber, Day day)
+            throws ServiceException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Schedule getSchedule(String cardNumber, String term, Day day)
+            throws ServiceException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Attendance getNextAttendance(String cardNumber)
+            throws ServiceException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
