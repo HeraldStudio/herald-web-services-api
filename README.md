@@ -36,7 +36,7 @@
 
 
 ### 2.5 Wiki
-(点击进入Wiki页面)[https://github.com/HeraldStudio/herald-web-services-api/wiki]
+[点击进入Wiki页面](https://github.com/HeraldStudio/herald-web-services-api/wiki)
 
 3 资源列表
 -------
