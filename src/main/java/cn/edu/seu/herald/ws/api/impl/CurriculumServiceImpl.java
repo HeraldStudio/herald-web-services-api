@@ -32,81 +32,99 @@ import cn.edu.seu.herald.ws.api.ServiceException;
 import cn.edu.seu.herald.ws.api.TimeTable;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.core.util.MultivaluedMapImpl;
-import java.io.StringReader;
+import java.net.URI;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
+import javax.ws.rs.core.UriBuilder;
 
 /**
  * 课程表服务的实现类，基于jersey实现的RESTful Web Services的客户端。
+ *
  * @author rAy <predator.ray@gmail.com>
  */
 public class CurriculumServiceImpl implements CurriculumService {
 
-    private WebResource resource;
+    private static final String CURR_TMPLT_1 = "/curriculum;cardNumber={1}";
+    private static final String CURR_TMPLT_2 =
+            "/curriculum;cardNumber={1};term={2}";
+    private static final String TIMETBL_TMPLT = "/timeTable";
+    private static final String SCHED_TMPLT_1 = "/schedule";
+    private static final String SCHED_TMPLT_2 = "/schedule;day={3}";
+    private static final String ATTEND_TMPLT = "/attendence";
+    private final String baseResourceUri;
+    private Client client;
 
-    public CurriculumServiceImpl(String resourceUri) {
-        Client c = Client.create();
-        resource = c.resource(resourceUri);
+    public CurriculumServiceImpl(String baseResourceUri) {
+        this.baseResourceUri = baseResourceUri;
+        client = Client.create();
     }
 
     public Curriculum getCurriculum(String cardNumber) throws ServiceException {
-        MultivaluedMap<String, String> params = new MultivaluedMapImpl();
-        params.add("cardNumber", cardNumber);
-        return getCurriculumWithParams(params);
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_1);
+        URI uri = builder.build(cardNumber);
+        return getJaxbObjectByResource(uri, Curriculum.class);
     }
 
     public Curriculum getCurriculum(String cardNumber, String term) {
-        MultivaluedMap<String, String> params = new MultivaluedMapImpl();
-        params.add("cardNumber", cardNumber);
-        params.add("term", term);
-        return getCurriculumWithParams(params);
-    }
-
-    private Curriculum getCurriculumWithParams(
-            MultivaluedMap<String, String> params) throws ServiceException {
-        try {
-            String response = resource.queryParams(params)
-                    .accept(MediaType.APPLICATION_XML_TYPE)
-                    .get(String.class);
-            StringReader reader = new StringReader(response);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Curriculum.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            return (Curriculum) jaxbUnmarshaller.unmarshal(reader);
-        } catch (Exception ex) {
-            throw new ServiceException(ex);
-        }
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_2);
+        URI uri = builder.build(cardNumber, term);
+        return getJaxbObjectByResource(uri, Curriculum.class);
     }
 
     public TimeTable getTimeTable(String cardNumber) throws ServiceException {
-        MultivaluedMap<String, String> params = new MultivaluedMapImpl();
-        params.add("cardNumber", cardNumber);
-        throw new UnsupportedOperationException("Not supported yet.");
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT);
+        URI uri = builder.build(cardNumber);
+        return getJaxbObjectByResource(uri, TimeTable.class);
     }
 
-    public TimeTable getTimeTable(String cardNumber, String term)
-            throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public TimeTable getTimeTable(String cardNumber, String term) {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_2 + TIMETBL_TMPLT);
+        URI uri = builder.build(cardNumber, term);
+        return getJaxbObjectByResource(uri, TimeTable.class);
     }
 
     public Schedule getSchedule(String cardNumber) throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT + SCHED_TMPLT_1);
+        URI uri = builder.build(cardNumber);
+        return getJaxbObjectByResource(uri, Schedule.class);
     }
 
     public Schedule getSchedule(String cardNumber, Day day)
             throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT + SCHED_TMPLT_2);
+        URI uri = builder.build(cardNumber, day);
+        return getJaxbObjectByResource(uri, Schedule.class);
     }
 
     public Schedule getSchedule(String cardNumber, String term, Day day)
             throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_2 + TIMETBL_TMPLT + SCHED_TMPLT_2);
+        URI uri = builder.build(cardNumber, term, day);
+        return getJaxbObjectByResource(uri, Schedule.class);
     }
 
     public Attendance getNextAttendance(String cardNumber)
             throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT + SCHED_TMPLT_1 +
+                ATTEND_TMPLT);
+        URI uri = builder.build(cardNumber);
+        return getJaxbObjectByResource(uri, Attendance.class);
+    }
+
+    private <T> T getJaxbObjectByResource(URI uri, Class<T> clz)
+            throws ServiceException {
+        try {
+            WebResource resource = client.resource(uri);
+            return resource.accept(MediaType.APPLICATION_XML_TYPE).get(clz);
+        } catch (Exception ex) {
+            throw new ServiceException(ex);
+        }
     }
 }
