@@ -50,7 +50,7 @@ public class TimeTable {
         return schedules;
     }
 
-    void setSchedules(List<Schedule> schedules) {
+    public void setSchedules(List<Schedule> schedules) {
         this.schedules = schedules;
     }
 }

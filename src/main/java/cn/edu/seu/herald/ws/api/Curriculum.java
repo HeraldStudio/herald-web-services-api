@@ -48,7 +48,7 @@ public class Curriculum {
     @XmlElementWrapper(name = "courses")
     @XmlElement(name = "course")
     private List<Course> courses;
-    //@XmlElement(name = "timeTable")
+    @XmlElement(name = "timeTable")
     private TimeTable timeTable;
 
     /**
@@ -86,19 +86,19 @@ public class Curriculum {
         return timeTable;
     }
 
-    void setCardNumber(String cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    void setTerm(String term) {
+    public void setTerm(String term) {
         this.term = term;
     }
 
-    void setCourses(List<Course> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
 
-    void setTimeTable(TimeTable timeTable) {
+    public void setTimeTable(TimeTable timeTable) {
         this.timeTable = timeTable;
     }
 }

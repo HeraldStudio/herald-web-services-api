@@ -85,19 +85,19 @@ public class Attendance {
         return strategy;
     }
 
-    void setCourseName(String courseName) {
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
-    void setPeriod(Period period) {
+    public void setPeriod(Period period) {
         this.period = period;
     }
 
-    void setPlace(String place) {
+    public void setPlace(String place) {
         this.place = place;
     }
 
-    void setStrategy(StrategyType strategy) {
+    public void setStrategy(StrategyType strategy) {
         this.strategy = strategy;
     }
 }

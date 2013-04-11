@@ -80,19 +80,19 @@ public class Course {
         return week;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    void setLecturer(String lecturer) {
+    public void setLecturer(String lecturer) {
         this.lecturer = lecturer;
     }
 
-    void setCredit(double credit) {
+    public void setCredit(double credit) {
         this.credit = credit;
     }
 
-    void setWeek(Period week) {
+    public void setWeek(Period week) {
         this.week = week;
     }
 }

@@ -46,7 +46,7 @@ public class Period {
     Period() {
     }
 
-    Period(int from, int to) {
+    public Period(int from, int to) {
         this.from = from;
         this.to = to;
     }
