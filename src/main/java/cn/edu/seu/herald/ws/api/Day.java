@@ -23,24 +23,86 @@
  */
 package cn.edu.seu.herald.ws.api;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * 星期枚举
+ *
  * @author rAy <predator.ray@gmail.com>
  */
 public enum Day {
 
-    /** 星期一 */
+    /**
+     * 星期一
+     */
     MON,
-    /** 星期二 */
+    /**
+     * 星期二
+     */
     TUE,
-    /** 星期三 */
+    /**
+     * 星期三
+     */
     WED,
-    /** 星期四 */
+    /**
+     * 星期四
+     */
     THU,
-    /** 星期五 */
+    /**
+     * 星期五
+     */
     FRI,
-    /** 星期六 */
+    /**
+     * 星期六
+     */
     SAT,
-    /** 星期日 */
-    SUN
+    /**
+     * 星期日
+     */
+    SUN;
+
+    /**
+     * 获取日期中的星期
+     *
+     * @param date 日期
+     * @return 星期
+     */
+    public static Day getDayOfDate(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        return parseCalendarDay(dayOfWeek);
+    }
+
+    /**
+     * 获取今天星期几
+     * @return 星期
+     */
+    public static Day getDayOfToday() {
+        Calendar cal = Calendar.getInstance();
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        return parseCalendarDay(dayOfWeek);
+    }
+
+    private static Day parseCalendarDay(int dayOfWeek) {
+        switch (dayOfWeek) {
+            case Calendar.SUNDAY:
+                return SUN;
+            case Calendar.MONDAY:
+                return MON;
+            case Calendar.TUESDAY:
+                return TUE;
+            case Calendar.WEDNESDAY:
+                return WED;
+            case Calendar.THURSDAY:
+                return THU;
+            case Calendar.FRIDAY:
+                return FRI;
+            case Calendar.SATURDAY:
+                return SAT;
+            default:
+                throw new RuntimeException("There is no Day for " + dayOfWeek);
+        }
+    }
 }

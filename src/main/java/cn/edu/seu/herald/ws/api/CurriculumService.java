@@ -72,7 +72,7 @@ public interface CurriculumService {
     /**
      * 根据一卡通号获取今天的课程行程
      * @param cardNumber 学生的一卡通号
-     * @return 今天的行程
+     * @return 今天的行程；如果没有，返回<code>null</code>
      * @throws ServiceException
      * @see cn.edu.seu.herald.ws.api.Schedule
      */
@@ -82,7 +82,7 @@ public interface CurriculumService {
      * 根据一卡通、星期几获取课程行程
      * @param cardNumber 学生的一卡通号
      * @param day 星期几
-     * @return 对应星期的行程
+     * @return 对应星期的行程；如果没有，返回<code>null</code>
      * @throws ServiceException
      * @see cn.edu.seu.herald.ws.api.Schedule
      */
@@ -93,7 +93,7 @@ public interface CurriculumService {
      * @param cardNumber 学生的一卡通号
      * @param term 学期，如11-12-3
      * @param day 星期几
-     * @return 对应学期、星期的行程
+     * @return 对应学期、星期的行程；如果没有，返回<code>null</code>
      * @throws ServiceException
      * @see cn.edu.seu.herald.ws.api.Schedule
      */
@@ -103,7 +103,7 @@ public interface CurriculumService {
     /**
      * 根据一卡通号获取下一节要上的课
      * @param cardNumber 学生的一卡通号
-     * @return 下一节要上的课
+     * @return 下一节要上的课；如果没有，返回<code>null</code>
      * @throws ServiceException
      * @see cn.edu.seu.herald.ws.api.Attendance
      */

@@ -27,12 +27,19 @@ import cn.edu.seu.herald.ws.api.Attendance;
 import cn.edu.seu.herald.ws.api.Curriculum;
 import cn.edu.seu.herald.ws.api.CurriculumService;
 import cn.edu.seu.herald.ws.api.Day;
+import cn.edu.seu.herald.ws.api.Period;
 import cn.edu.seu.herald.ws.api.Schedule;
 import cn.edu.seu.herald.ws.api.ServiceException;
 import cn.edu.seu.herald.ws.api.TimeTable;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import java.net.URI;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
@@ -73,49 +80,69 @@ public class CurriculumServiceImpl implements CurriculumService {
     }
 
     public TimeTable getTimeTable(String cardNumber) throws ServiceException {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT);
-        URI uri = builder.build(cardNumber);
-        return getJaxbObjectByResource(uri, TimeTable.class);
+        Curriculum curriculum = getCurriculum(cardNumber);
+        return curriculum.getTimeTable();
     }
 
     public TimeTable getTimeTable(String cardNumber, String term) {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_2 + TIMETBL_TMPLT);
-        URI uri = builder.build(cardNumber, term);
-        return getJaxbObjectByResource(uri, TimeTable.class);
+        Curriculum curriculum = getCurriculum(cardNumber, term);
+        return curriculum.getTimeTable();
     }
 
     public Schedule getSchedule(String cardNumber) throws ServiceException {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT + SCHED_TMPLT_1);
-        URI uri = builder.build(cardNumber);
-        return getJaxbObjectByResource(uri, Schedule.class);
+        return getSchedule(cardNumber, Day.getDayOfToday());
     }
 
     public Schedule getSchedule(String cardNumber, Day day)
             throws ServiceException {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT + SCHED_TMPLT_2);
-        URI uri = builder.build(cardNumber, day);
-        return getJaxbObjectByResource(uri, Schedule.class);
+        TimeTable timeTable = getTimeTable(cardNumber);
+        return searchScheduleWithDay(timeTable, day);
     }
 
     public Schedule getSchedule(String cardNumber, String term, Day day)
             throws ServiceException {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_2 + TIMETBL_TMPLT + SCHED_TMPLT_2);
-        URI uri = builder.build(cardNumber, term, day);
-        return getJaxbObjectByResource(uri, Schedule.class);
+        TimeTable timeTable = getTimeTable(cardNumber, term);
+        return searchScheduleWithDay(timeTable, day);
+    }
+
+    private Schedule searchScheduleWithDay(TimeTable timeTable, Day day) {
+        for (Schedule schedule : timeTable.getSchedules()) {
+            if (schedule.getDay().equals(day)) {
+                return schedule;
+            }
+        }
+        return null;
     }
 
     public Attendance getNextAttendance(String cardNumber)
             throws ServiceException {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_1 + TIMETBL_TMPLT + SCHED_TMPLT_1 +
-                ATTEND_TMPLT);
-        URI uri = builder.build(cardNumber);
-        return getJaxbObjectByResource(uri, Attendance.class);
+        Schedule scheduleOfToday = getSchedule(cardNumber);
+        int startFrom = getWhereToStartFrom();
+        List<Attendance> toBeOrdered = scheduleOfToday.getAttendances();
+        Collections.sort(toBeOrdered, new AttendanceComparator());
+        for (Attendance attendance : toBeOrdered) {
+            Period period = attendance.getPeriod();
+            int from = period.getFrom();
+            if (from > startFrom) {
+                return attendance;
+            }
+        }
+        return null;
+    }
+
+    private static class AttendanceComparator
+            implements Comparator<Attendance> {
+
+        public int compare(Attendance o1, Attendance o2) {
+            return o1.getPeriod().getFrom() - o2.getPeriod().getTo();
+        }
+    }
+
+    private static int getWhereToStartFrom() {
+        Calendar now = Calendar.getInstance();
+        int hourOfDay = now.get(Calendar.HOUR_OF_DAY);
+        int minuteOfDay = now.get(Calendar.MINUTE);
+        return CoursePeriodUtils.getWhereToStartFrom(hourOfDay, minuteOfDay);
     }
 
     private <T> T getJaxbObjectByResource(URI uri, Class<T> clz)
