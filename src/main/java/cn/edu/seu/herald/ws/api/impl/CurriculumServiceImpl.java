@@ -53,10 +53,6 @@ public class CurriculumServiceImpl implements CurriculumService {
     private static final String CURR_TMPLT_1 = "/curriculum;cardNumber={1}";
     private static final String CURR_TMPLT_2 =
             "/curriculum;cardNumber={1};term={2}";
-    private static final String TIMETBL_TMPLT = "/timeTable";
-    private static final String SCHED_TMPLT_1 = "/schedule";
-    private static final String SCHED_TMPLT_2 = "/schedule;day={3}";
-    private static final String ATTEND_TMPLT = "/attendence";
     private final String baseResourceUri;
     private Client client;
 
