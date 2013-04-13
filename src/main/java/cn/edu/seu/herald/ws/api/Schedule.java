@@ -63,11 +63,11 @@ public class Schedule {
         return attendances;
     }
 
-    void setDay(Day day) {
+    public void setDay(Day day) {
         this.day = day;
     }
 
-    void setAttendances(List<Attendance> attendances) {
+    public void setAttendances(List<Attendance> attendances) {
         this.attendances = attendances;
     }
 }
