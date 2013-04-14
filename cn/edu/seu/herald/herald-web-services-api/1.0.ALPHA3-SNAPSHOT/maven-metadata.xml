@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>cn.edu.seu.herald</groupId>
+  <artifactId>herald-web-services-api</artifactId>
+  <version>1.0.ALPHA3-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20130414.161333</timestamp>
+      <buildNumber>3</buildNumber>
+    </snapshot>
+    <lastUpdated>20130414161333</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0.ALPHA3-20130414.161333-3</value>
+        <updated>20130414161333</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.ALPHA3-20130414.161333-3</value>
+        <updated>20130414161333</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

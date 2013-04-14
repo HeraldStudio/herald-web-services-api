@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>cn.edu.seu.herald</groupId>
+  <artifactId>herald-web-services-api</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.ALPHA3-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20130414161333</lastUpdated>
+  </versioning>
+</metadata>
