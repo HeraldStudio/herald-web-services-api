@@ -17,7 +17,7 @@
     <dependency>
         <groupId>cn.edu.seu.herald</groupId>
         <artifactId>herald-web-services-api</artifactId>
-        <version>{latest version}</version>
+        <version>1.0.ALPHA2</version>
     </dependency>
 
 ### 2.3 代码示例
