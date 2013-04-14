@@ -52,4 +52,5 @@
     * 下节课（``` cn.edu.seu.herald.ws.api.Attendance ```）
 
 使用方法详见[wiki](https://github.com/HeraldStudio/herald-web-services-api/wiki)
+
 （目前处于开发初期，敬请期待更多资源…）
