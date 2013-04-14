@@ -31,7 +31,6 @@ import cn.edu.seu.herald.ws.api.impl.CurriculumServiceImpl;
  */
 public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
 
-    private static final String CURRICULUM_PATH = "/curriculum";
     private final String baseResourceUri;
 
     /**
@@ -47,6 +46,6 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      * @return 课程表服务
      */
     public CurriculumService getCurriculumService() {
-        return new CurriculumServiceImpl(baseResourceUri + CURRICULUM_PATH);
+        return new CurriculumServiceImpl(baseResourceUri);
     }
 }

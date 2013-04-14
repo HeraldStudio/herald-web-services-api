@@ -4,7 +4,7 @@
 
     <groupId>cn.edu.seu.herald</groupId>
     <artifactId>herald-web-services-api</artifactId>
-    <version>1.0.ALPHA1</version>
+    <version>1.0.ALPHA2</version>
     <packaging>jar</packaging>
 
     <name>herald-web-services-api</name>
