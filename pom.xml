@@ -8,11 +8,19 @@
     <version>1.0.ALPHA3-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>herald-web-services-api</name>
+    <name>Herald Web Services API</name>
+
     <organization>
         <name>Herald Studio, Southeast University</name>
         <url>http://herald.seu.edu.cn/</url>
     </organization>
+
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,6 +42,7 @@
             <version>1.17.1</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -64,6 +73,7 @@
             </plugin>
         </plugins>
     </build>
+
     <distributionManagement>
         <repository>
             <id>internal.repo</id>
