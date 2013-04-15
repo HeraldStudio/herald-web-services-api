@@ -39,23 +39,26 @@
 
 <h2>2 如何使用</h2>
 
-<h3>2.1 获取源码</h3>
+<h3>2.1 添加Maven依赖</h3>
 
-<pre><code>git clone git://github.com/HeraldStudio/herald-web-services-api.git
-cd herald-web-services-api
-mvn install
+<p>添加资源库</p>
+
+<pre><code>&lt;repository&gt;
+    &lt;id&gt;herald-web-services-api-mvn-repo&lt;/id&gt;
+    &lt;url&gt;https://raw.github.com/HeraldStudio/herald-web-services-api/mvn-repo/&lt;/url&gt;
+&lt;/repository&gt;
 </code></pre>
 
-<h3>2.2 添加Maven依赖</h3>
+<p>添加工件依赖</p>
 
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;cn.edu.seu.herald&lt;/groupId&gt;
     &lt;artifactId&gt;herald-web-services-api&lt;/artifactId&gt;
-    &lt;version&gt;1.0.ALPHA2&lt;/version&gt;
+    &lt;version&gt;1.0.ALPHA3&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 
-<h3>2.3 代码示例</h3>
+<h3>2.2 代码示例</h3>
 
 <pre><code>final String HERALD_WS_BASE_URI = "http://herald.seu.edu.cn/ws";
 HeraldWebServicesFactory factory = new HeraldWebServicesFactoryImpl(HERALD_WS_BASE_URI);
@@ -65,7 +68,7 @@ String cardNumber = "213000000";
 Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 </code></pre>
 
-<h3>2.4 JavaDoc</h3>
+<h3>2.3 JavaDoc</h3>
 
 <p><a href="http://heraldstudio.github.io/herald-web-services-api/docs">使用在线版</a></p>
 
@@ -92,209 +95,9 @@ Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 <li>下节课（<code>cn.edu.seu.herald.ws.api.Attendance</code>）</li>
 </ul>
 </li>
-</ul><p>（目前处于开发初期，敬请期待更多资源…）</p>
+</ul><p>使用方法详见<a href="https://github.com/HeraldStudio/herald-web-services-api/wiki">wiki</a></p>
 
-<h2>4 资源接口描述</h2>
-
-<p>以下为资源接口的RESTful Web Services接口描述。资源调用方式以在该API中提供参考实现。如需要对API扩展，可供参考。</p>
-
-<h3>4.1 课程表资源</h3>
-
-<h4>4.1.1 获取课程表</h4>
-
-<p><strong>请求：</strong></p>
-
-<pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}
-Accept: application/xml
-</code></pre>
-
-<p>参数列表说明</p>
-
-<table width="100%">
-<tr>
-<td><b>参数名称</b></td>
-        <td><b>参数类型</b></td>
-        <td><b>缺省</b></td>
-    </tr>
-<tr>
-<td>cardNumber</td>
-        <td>matrix</td>
-        <td>N/A</td>
-    </tr>
-<tr>
-<td>term</td>
-        <td>matrix</td>
-        <td>当前学期</td>
-    </tr>
-</table><p><strong>响应：</strong></p>
-
-<pre><code>HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;curriculum xmlns="http://herald.seu.edu.cn/ws/curriculum"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://herlad.seu.edu.cn/ws/curriculum curriculum.xsd"
-    cardNumber="213100434"
-    term="12-13-3"&gt;
-    &lt;courses&gt;
-        &lt;course&gt;
-            &lt;name&gt;IT新技术讲座&lt;/name&gt;
-            &lt;lecturer&gt;&lt;/lecturer&gt;
-            &lt;credit&gt;0.5&lt;/credit&gt;
-            &lt;week from="1" to="16"/&gt;
-        &lt;/course&gt;
-        &lt;course&gt;
-            &lt;name&gt;Web技术及其应用&lt;/name&gt;
-            &lt;lecturer&gt;Xiannong Meng&lt;/lecturer&gt;
-            &lt;credit&gt;2&lt;/credit&gt;
-            &lt;week from="14" to="17"/&gt;
-        &lt;/course&gt;
-        &lt;course&gt;
-            &lt;name&gt;XML技术&lt;/name&gt;
-            &lt;lecturer&gt;王伟&lt;/lecturer&gt;
-            &lt;credit&gt;2&lt;/credit&gt;
-            &lt;week from="1" to="8"/&gt;
-        &lt;/course&gt;
-    &lt;/courses&gt;
-    &lt;timeTable&gt;
-        &lt;schedule day="MON"&gt;
-            &lt;attendance courseName="XML技术" place="九龙湖教四-303"&gt;
-                &lt;period from="1" to="4"/&gt;
-            &lt;/attendance&gt;
-            &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
-                &lt;period from="6" to="7"/&gt;
-            &lt;/attendance&gt;
-        &lt;/schedule&gt;
-        &lt;schedule day="TUE"&gt;
-            &lt;attendance courseName="Web技术及其应用" place="九龙湖教四-303" strategy="ODD"&gt;
-                &lt;period from="1" to="4"/&gt;
-            &lt;/attendance&gt;
-            &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
-                &lt;period from="6" to="7"/&gt;
-            &lt;/attendance&gt;
-            &lt;attendance courseName="XML技术" place="九龙湖教八-401"&gt;
-                &lt;period from="8" to="9"/&gt;
-            &lt;/attendance&gt;
-        &lt;/schedule&gt;
-    &lt;/timeTable&gt;
-&lt;/curriculum&gt;
-</code></pre>
-
-<h4>4.1.2 获取时间表</h4>
-
-<p>时间表描述了一周的课程安排。</p>
-
-<p><strong>请求：</strong></p>
-
-<pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}/timeTable
-Accept: application/xml
-</code></pre>
-
-<p>参数列表说明</p>
-
-<table width="100%">
-<tr>
-<td><b>参数名称</b></td>
-        <td><b>参数类型</b></td>
-        <td><b>缺省</b></td>
-    </tr>
-<tr>
-<td>cardNumber</td>
-        <td>matrix</td>
-        <td>N/A</td>
-    </tr>
-<tr>
-<td>term</td>
-        <td>matrix</td>
-        <td>当前学期</td>
-    </tr>
-</table><p><strong>响应：</strong></p>
-
-<pre><code>HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;timeTable xmlns="http://herald.seu.edu.cn/ws/curriculum"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://herlad.seu.edu.cn/ws/curriculum curriculum.xsd"&gt;
-    &lt;schedule day="MON"&gt;
-        &lt;attendance courseName="XML技术" place="九龙湖教四-303"&gt;
-            &lt;period from="1" to="4"/&gt;
-        &lt;/attendance&gt;
-        &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
-            &lt;period from="6" to="7"/&gt;
-        &lt;/attendance&gt;
-    &lt;/schedule&gt;
-    &lt;schedule day="TUE"&gt;
-        &lt;attendance courseName="Web技术及其应用" place="九龙湖教四-303" strategy="ODD"&gt;
-            &lt;period from="1" to="4"/&gt;
-        &lt;/attendance&gt;
-        &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
-            &lt;period from="6" to="7"/&gt;
-        &lt;/attendance&gt;
-        &lt;attendance courseName="XML技术" place="九龙湖教八-401"&gt;
-            &lt;period from="8" to="9"/&gt;
-        &lt;/attendance&gt;
-    &lt;/schedule&gt;
-&lt;/timeTable&gt;
-</code></pre>
-
-<h4>4.1.3 获取某天行程安排</h4>
-
-<p>获取某天要上的课</p>
-
-<p><strong>请求：</strong></p>
-
-<pre><code>GET http://herald.seu.edu.cn/ws/curriculum;cardNumber={一卡通号};term={学期}/timeTable/schedule;day={星期}
-Accept: application/xml
-</code></pre>
-
-<p>参数列表说明</p>
-
-<table width="100%">
-<tr>
-<td><b>参数名称</b></td>
-        <td><b>参数类型</b></td>
-        <td><b>缺省</b></td>
-    </tr>
-<tr>
-<td>cardNumber</td>
-        <td>matrix</td>
-        <td>N/A</td>
-    </tr>
-<tr>
-<td>term</td>
-        <td>matrix</td>
-        <td>当前学期</td>
-    </tr>
-<tr>
-<td>day</td>
-        <td>matrix</td>
-        <td>今天的星期</td>
-    </tr>
-</table><p><strong>响应：</strong></p>
-
-<pre><code>HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;schedule xmlns="http://herald.seu.edu.cn/ws/curriculum"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://herlad.seu.edu.cn/ws/curriculum curriculum.xsd"
-    day="MON"&gt;
-    &lt;attendance courseName="XML技术" place="九龙湖教四-303"&gt;
-        &lt;period from="1" to="4"/&gt;
-    &lt;/attendance&gt;
-    &lt;attendance courseName="IT新技术讲座" place="九龙湖教八-401"&gt;
-        &lt;period from="6" to="7"/&gt;
-    &lt;/attendance&gt;
-&lt;/schedule&gt;
-</code></pre>
-
-<h3>4.2 其他</h3>
-
-<p>关于返回的XML的Schema，详见项目下<code>/src/test/resources/cn/edu/seu/herald/ws/api/curriculum.xsd</code>或先声网下<a href="http://herald.seu.edu.cn/ws/curriculum.xsd">curriculum.xsd</a>。</p>
+<p>（目前处于开发初期，敬请期待更多资源…）</p>
       </section>
     </div>
 
