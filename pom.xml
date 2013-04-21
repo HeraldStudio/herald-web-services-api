@@ -5,7 +5,7 @@
 
     <groupId>cn.edu.seu.herald</groupId>
     <artifactId>herald-web-services-api</artifactId>
-    <version>1.0.ALPHA3</version>
+    <version>1.1-SHAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Herald Web Services API</name>
@@ -45,6 +45,24 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2.2</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
