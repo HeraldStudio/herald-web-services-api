@@ -23,21 +23,17 @@
  */
 package cn.edu.seu.herald.ws.api;
 
+import org.apache.wink.common.model.atom.AtomFeed;
+
 /**
- * 先声网Web服务抽象工厂接口
+ *
  * @author rAy <predator.ray@gmail.com>
  */
-public interface HeraldWebServicesFactory {
+public interface CampusInfoService {
 
     /**
-     * 获取课程表服务
-     * @return 课程表服务
+     * 获取教务处的信息供稿
+     * @return 教务处的信息供稿
      */
-    CurriculumService getCurriculumService();
-
-    /**
-     * 获取教务处服务
-     * @return 教务处服务
-     */
-    CampusInfoService getCampusInfoService();
+    AtomFeed getAAOFeed();
 }

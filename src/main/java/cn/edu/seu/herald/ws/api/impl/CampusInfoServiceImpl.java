@@ -21,23 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.impl;
+
+import cn.edu.seu.herald.ws.api.CampusInfoService;
+import java.net.URI;
+import javax.ws.rs.core.UriBuilder;
+import org.apache.wink.common.model.atom.AtomFeed;
 
 /**
- * 先声网Web服务抽象工厂接口
+ *
  * @author rAy <predator.ray@gmail.com>
  */
-public interface HeraldWebServicesFactory {
+public class CampusInfoServiceImpl extends AbstractService
+        implements CampusInfoService {
 
-    /**
-     * 获取课程表服务
-     * @return 课程表服务
-     */
-    CurriculumService getCurriculumService();
+    private static final String AAO_URL = "/campus/aao";
+    private String baseResourceUri;
 
-    /**
-     * 获取教务处服务
-     * @return 教务处服务
-     */
-    CampusInfoService getCampusInfoService();
+    public CampusInfoServiceImpl(String baseResourceUri) {
+        this.baseResourceUri = baseResourceUri;
+    }
+
+    public AtomFeed getAAOFeed() {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(AAO_URL);
+        URI uri = builder.build();
+        return getJaxbObjectByResource(uri, AtomFeed.class);
+    }
 }

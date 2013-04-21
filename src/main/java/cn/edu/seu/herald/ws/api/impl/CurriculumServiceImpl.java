@@ -31,14 +31,11 @@ import cn.edu.seu.herald.ws.api.Period;
 import cn.edu.seu.herald.ws.api.Schedule;
 import cn.edu.seu.herald.ws.api.ServiceException;
 import cn.edu.seu.herald.ws.api.TimeTable;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
 import java.net.URI;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
 /**
@@ -46,17 +43,16 @@ import javax.ws.rs.core.UriBuilder;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-public class CurriculumServiceImpl implements CurriculumService {
+public class CurriculumServiceImpl extends AbstractService
+        implements CurriculumService {
 
     private static final String CURR_TMPLT_1 = "/curriculum;cardNumber={1}";
     private static final String CURR_TMPLT_2 =
             "/curriculum;cardNumber={1};term={2}";
     private final String baseResourceUri;
-    private Client client;
 
     public CurriculumServiceImpl(String baseResourceUri) {
         this.baseResourceUri = baseResourceUri;
-        client = Client.create();
     }
 
     public Curriculum getCurriculum(String cardNumber) throws ServiceException {
@@ -137,15 +133,5 @@ public class CurriculumServiceImpl implements CurriculumService {
         int hourOfDay = now.get(Calendar.HOUR_OF_DAY);
         int minuteOfDay = now.get(Calendar.MINUTE);
         return CoursePeriodUtils.getWhereToStartFrom(hourOfDay, minuteOfDay);
-    }
-
-    private <T> T getJaxbObjectByResource(URI uri, Class<T> clz)
-            throws ServiceException {
-        try {
-            WebResource resource = client.resource(uri);
-            return resource.accept(MediaType.APPLICATION_XML_TYPE).get(clz);
-        } catch (Exception ex) {
-            throw new ServiceException(ex);
-        }
     }
 }
