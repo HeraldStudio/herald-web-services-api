@@ -27,6 +27,7 @@ import cn.edu.seu.herald.ws.api.CampusInfoService;
 import java.net.URI;
 import javax.ws.rs.core.UriBuilder;
 import org.apache.wink.common.model.atom.AtomFeed;
+import org.apache.wink.common.model.rss.RssFeed;
 
 /**
  *
@@ -42,10 +43,17 @@ public class CampusInfoServiceImpl extends AbstractService
         this.baseResourceUri = baseResourceUri;
     }
 
-    public AtomFeed getAAOFeed() {
+    public AtomFeed getAaoAtomFeed() {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
         builder.path(AAO_URL);
         URI uri = builder.build();
         return getJaxbObjectByResource(uri, AtomFeed.class);
+    }
+
+    public RssFeed getAaoRssFeed() {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
+        builder.path(AAO_URL);
+        URI uri = builder.build();
+        return getJaxbObjectByResource(uri, RssFeed.class);
     }
 }

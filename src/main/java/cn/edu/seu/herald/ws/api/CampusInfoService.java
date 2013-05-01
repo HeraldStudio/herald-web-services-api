@@ -24,6 +24,7 @@
 package cn.edu.seu.herald.ws.api;
 
 import org.apache.wink.common.model.atom.AtomFeed;
+import org.apache.wink.common.model.rss.RssFeed;
 
 /**
  *
@@ -32,8 +33,14 @@ import org.apache.wink.common.model.atom.AtomFeed;
 public interface CampusInfoService {
 
     /**
-     * 获取教务处的信息供稿
+     * 获取教务处的信息ATOM供稿
      * @return 教务处的信息供稿
      */
-    AtomFeed getAAOFeed();
+    AtomFeed getAaoAtomFeed();
+
+    /**
+     * 获取教务处的信息RSS供稿
+     * @return 教务处的信息供稿
+     */
+    RssFeed getAaoRssFeed();
 }
