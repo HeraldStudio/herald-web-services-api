@@ -24,6 +24,7 @@
 package cn.edu.seu.herald.ws.api;
 
 import cn.edu.seu.herald.ws.api.impl.CampusInfoServiceImpl;
+import cn.edu.seu.herald.ws.api.impl.ClassroomServiceImpl;
 import cn.edu.seu.herald.ws.api.impl.CurriculumServiceImpl;
 
 /**
@@ -56,5 +57,13 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     public CampusInfoService getCampusInfoService() {
         return new CampusInfoServiceImpl(baseResourceUri);
+    }
+
+    /**
+     * 获取教室服务
+     * @return 教室服务
+     */
+    public ClassroomService getClassroomService() {
+        return new ClassroomServiceImpl(baseResourceUri);
     }
 }

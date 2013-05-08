@@ -27,7 +27,7 @@ import org.apache.wink.common.model.atom.AtomFeed;
 import org.apache.wink.common.model.rss.RssFeed;
 
 /**
- *
+ * 校园信息服务接口
  * @author rAy <predator.ray@gmail.com>
  */
 public interface CampusInfoService {

@@ -33,7 +33,7 @@ import org.apache.wink.common.model.rss.RssFeed;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-public class CampusInfoServiceImpl extends AbstractService
+public class CampusInfoServiceImpl extends AbstractXmlService
         implements CampusInfoService {
 
     private static final String AAO_URL = "/campus/aao";
@@ -44,15 +44,14 @@ public class CampusInfoServiceImpl extends AbstractService
     }
 
     public AtomFeed getAaoAtomFeed() {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(AAO_URL);
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri).path(AAO_URL);
         URI uri = builder.build();
         return getJaxbObjectByResource(uri, AtomFeed.class);
     }
 
     public RssFeed getAaoRssFeed() {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(AAO_URL);
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
+                .path(AAO_URL);
         URI uri = builder.build();
         return getJaxbObjectByResource(uri, RssFeed.class);
     }

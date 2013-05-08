@@ -23,31 +23,37 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
-import cn.edu.seu.herald.ws.api.ServiceException;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
-import java.net.URI;
-import javax.ws.rs.core.MediaType;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  * @author rAy <predator.ray@gmail.com>
  */
-abstract class AbstractService {
+public class CsvDecoder {
 
-    private Client client;
+    private static final String DEFAULT_ESCAPE = "\\,";
+    private final String escape;
 
-    AbstractService() {
-        client = Client.create();
+    public CsvDecoder() {
+        this(DEFAULT_ESCAPE);
     }
 
-    protected <T> T getJaxbObjectByResource(URI uri, Class<T> clz)
-            throws ServiceException {
-        try {
-            WebResource resource = client.resource(uri);
-            return resource.accept(MediaType.APPLICATION_XML_TYPE).get(clz);
-        } catch (Exception ex) {
-            throw new ServiceException(ex);
+    public CsvDecoder(String escape) {
+        this.escape = escape;
+    }
+
+    public List<String> decode(String csv) {
+        if (csv == null) {
+            return null;
         }
+
+        String[] raw = csv.split(",");
+        List<String> decoded = new LinkedList();
+        for (String e : raw) {
+            String cooked = e.replace(escape, ",");
+            decoded.add(cooked);
+        }
+        return decoded;
     }
 }

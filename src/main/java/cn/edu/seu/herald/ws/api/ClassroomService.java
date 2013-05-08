@@ -23,27 +23,20 @@
  */
 package cn.edu.seu.herald.ws.api;
 
+import java.util.List;
+
 /**
- * 先声网Web服务抽象工厂接口
+ * 教室服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface HeraldWebServicesFactory {
+public interface ClassroomService {
 
     /**
-     * 获取课程表服务
-     * @return 课程表服务
+     * 返回所有空闲教室的列表
+     * @param day 星期
+     * @param from 开始课次
+     * @param to 结束课次
+     * @return 空闲教室的字符串列表
      */
-    CurriculumService getCurriculumService();
-
-    /**
-     * 获取教务处服务
-     * @return 教务处服务
-     */
-    CampusInfoService getCampusInfoService();
-
-    /**
-     * 获取教室服务
-     * @return 教室服务
-     */
-    ClassroomService getClassroomService();
+    List<String> getClassroomUnused(Day day, int from, int to);
 }

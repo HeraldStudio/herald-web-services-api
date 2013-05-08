@@ -21,29 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.impl;
+
+import cn.edu.seu.herald.ws.api.ServiceException;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+import java.net.URI;
+import java.util.List;
 
 /**
- * 先声网Web服务抽象工厂接口
+ *
  * @author rAy <predator.ray@gmail.com>
  */
-public interface HeraldWebServicesFactory {
+abstract class AbstractCsvService {
 
-    /**
-     * 获取课程表服务
-     * @return 课程表服务
-     */
-    CurriculumService getCurriculumService();
+    private Client client;
+    private CsvDecoder csvDecoder = new CsvDecoder();
 
-    /**
-     * 获取教务处服务
-     * @return 教务处服务
-     */
-    CampusInfoService getCampusInfoService();
+    AbstractCsvService() {
+        client = Client.create();
+    }
 
-    /**
-     * 获取教室服务
-     * @return 教室服务
-     */
-    ClassroomService getClassroomService();
+    protected List<String> getCsvByResouse(URI uri) {
+        try {
+            WebResource resource = client.resource(uri);
+            String csv = resource.accept("text/csv").get(String.class);
+            return csvDecoder.decode(csv);
+        } catch (Exception ex) {
+            throw new ServiceException(ex);
+        }
+    }
 }

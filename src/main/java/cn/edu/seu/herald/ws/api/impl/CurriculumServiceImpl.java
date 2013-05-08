@@ -43,7 +43,7 @@ import javax.ws.rs.core.UriBuilder;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-public class CurriculumServiceImpl extends AbstractService
+public class CurriculumServiceImpl extends AbstractXmlService
         implements CurriculumService {
 
     private static final String CURR_TMPLT_1 = "/curriculum;cardNumber={1}";
@@ -56,15 +56,15 @@ public class CurriculumServiceImpl extends AbstractService
     }
 
     public Curriculum getCurriculum(String cardNumber) throws ServiceException {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_1);
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
+                .path(CURR_TMPLT_1);
         URI uri = builder.build(cardNumber);
         return getJaxbObjectByResource(uri, Curriculum.class);
     }
 
     public Curriculum getCurriculum(String cardNumber, String term) {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri);
-        builder.path(CURR_TMPLT_2);
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
+                .path(CURR_TMPLT_2);
         URI uri = builder.build(cardNumber, term);
         return getJaxbObjectByResource(uri, Curriculum.class);
     }

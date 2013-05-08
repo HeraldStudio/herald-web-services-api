@@ -21,29 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.impl;
+
+import cn.edu.seu.herald.ws.api.ClassroomService;
+import cn.edu.seu.herald.ws.api.Day;
+import java.net.URI;
+import java.util.List;
+import javax.ws.rs.core.UriBuilder;
 
 /**
- * 先声网Web服务抽象工厂接口
+ * 教室服务的实现类，基于jersey实现的RESTful Web Services的客户端。
  * @author rAy <predator.ray@gmail.com>
  */
-public interface HeraldWebServicesFactory {
+public class ClassroomServiceImpl extends AbstractCsvService
+        implements ClassroomService {
 
-    /**
-     * 获取课程表服务
-     * @return 课程表服务
-     */
-    CurriculumService getCurriculumService();
+    private static final String CLASSROOM_UNUSED_PATH = "/classroom/unused/{day}";
+    private String baseResourceUri;
 
-    /**
-     * 获取教务处服务
-     * @return 教务处服务
-     */
-    CampusInfoService getCampusInfoService();
+    public ClassroomServiceImpl(String baseResourceUri) {
+        this.baseResourceUri = baseResourceUri;
+    }
 
-    /**
-     * 获取教室服务
-     * @return 教室服务
-     */
-    ClassroomService getClassroomService();
+    public List<String> getClassroomUnused(Day day, int from, int to) {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
+                .path(CLASSROOM_UNUSED_PATH)
+                .queryParam("from", from).queryParam("to", to);
+        URI uri = builder.build(day);
+        return getCsvByResouse(uri);
+    }
 }
