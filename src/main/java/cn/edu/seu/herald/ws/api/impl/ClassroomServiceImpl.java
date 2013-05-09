@@ -36,7 +36,7 @@ import javax.ws.rs.core.UriBuilder;
 public class ClassroomServiceImpl extends AbstractCsvService
         implements ClassroomService {
 
-    private static final String CLASSROOM_UNUSED_PATH = "/classroom/unused/{day}";
+    private static final String CLASSROOM_UNUSED_PATH = "/classroom/unused";
     private String baseResourceUri;
 
     public ClassroomServiceImpl(String baseResourceUri) {
@@ -46,6 +46,7 @@ public class ClassroomServiceImpl extends AbstractCsvService
     public List<String> getClassroomUnused(Day day, int from, int to) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
                 .path(CLASSROOM_UNUSED_PATH)
+                .queryParam("day", day)
                 .queryParam("from", from).queryParam("to", to);
         URI uri = builder.build(day);
         return getCsvByResouse(uri);
