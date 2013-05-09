@@ -21,17 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 /**
  * 先声网Web服务API包，包含与服务端交互所必须的类。
  */
 @javax.xml.bind.annotation.XmlSchema(
         xmlns = @javax.xml.bind.annotation.XmlNs(
-                prefix = "curr",
-                namespaceURI = "http://herald.seu.edu.cn/ws/curriculum"
-        ),
+        prefix = "curr",
+        namespaceURI = "http://herald.seu.edu.cn/ws/curriculum"),
         location = "http://herald.seu.edu.cn/ws/curriculum curriculum.xsd",
         namespace = "http://herald.seu.edu.cn/ws/curriculum",
-        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED
- )
+        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package cn.edu.seu.herald.ws.api;

@@ -21,40 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.impl;
 
-import org.apache.wink.common.model.atom.AtomFeed;
-import org.apache.wink.common.model.rss.RssFeed;
+import cn.edu.seu.herald.ws.api.ServiceException;
 
 /**
- * 校园信息服务接口
+ *
  * @author rAy <predator.ray@gmail.com>
  */
-public interface CampusInfoService {
+class UnexpectedStatusException extends ServiceException {
 
-    /**
-     * 获取教务处的信息ATOM供稿
-     * @return 教务处的信息供稿
-     */
-    AtomFeed getAaoAtomFeed();
+    public UnexpectedStatusException(int status) {
+        super(String.format("Unexpected http status: %d from server response",
+                status));
+    }
 
-    /**
-     * 获取教务处的信息ATOM供稿
-     * @param uuid 当前最新供稿的UUID
-     * @return 教务处的信息供稿
-     */
-    AtomFeed getAaoAtomFeed(String uuid);
-
-    /**
-     * 获取教务处的信息RSS供稿
-     * @return 教务处的信息供稿
-     */
-    RssFeed getAaoRssFeed();
-
-    /**
-     * 获取教务处的信息RSS供稿
-     * @param uuid 当前最新供稿的UUID
-     * @return 教务处的信息供稿
-     */
-    RssFeed getAaoRssFeed(String uuid);
 }

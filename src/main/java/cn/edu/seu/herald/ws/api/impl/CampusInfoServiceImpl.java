@@ -49,10 +49,23 @@ public class CampusInfoServiceImpl extends AbstractXmlService
         return getJaxbObjectByResource(uri, AtomFeed.class);
     }
 
+    public AtomFeed getAaoAtomFeed(String uuid) {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri).path(AAO_URL);
+        URI uri = builder.build();
+        return getJaxbObjectByResource(uri, uuid, AtomFeed.class);
+    }
+
     public RssFeed getAaoRssFeed() {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
                 .path(AAO_URL);
         URI uri = builder.build();
         return getJaxbObjectByResource(uri, RssFeed.class);
+    }
+
+    public RssFeed getAaoRssFeed(String uuid) {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
+                .path(AAO_URL);
+        URI uri = builder.build();
+        return getJaxbObjectByResource(uri, uuid, RssFeed.class);
     }
 }
