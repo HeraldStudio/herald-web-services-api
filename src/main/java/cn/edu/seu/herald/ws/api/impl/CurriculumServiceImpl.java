@@ -46,9 +46,9 @@ import javax.ws.rs.core.UriBuilder;
 public class CurriculumServiceImpl extends AbstractXmlService
         implements CurriculumService {
 
-    private static final String CURR_TMPLT_1 = "/curriculum;cardNumber={1}";
+    private static final String CURR_TMPLT_1 = "/curriculum?cardNumber={1}";
     private static final String CURR_TMPLT_2 =
-            "/curriculum;cardNumber={1};term={2}";
+            "/curriculum?cardNumber={1}&term={2}";
     private final String baseResourceUri;
 
     public CurriculumServiceImpl(String baseResourceUri) {
