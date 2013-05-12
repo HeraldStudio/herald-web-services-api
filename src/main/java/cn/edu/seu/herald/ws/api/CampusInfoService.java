@@ -33,19 +33,6 @@ import org.apache.wink.common.model.rss.RssFeed;
 public interface CampusInfoService {
 
     /**
-     * 获取教务处的信息ATOM供稿
-     * @return 教务处的信息供稿
-     */
-    AtomFeed getAaoAtomFeed();
-
-    /**
-     * 获取教务处的信息ATOM供稿
-     * @param uuid 当前最新供稿的UUID
-     * @return 教务处的信息供稿
-     */
-    AtomFeed getAaoAtomFeed(String uuid);
-
-    /**
      * 获取教务处的信息RSS供稿
      * @return 教务处的信息供稿
      */

@@ -38,5 +38,5 @@ public interface ClassroomService {
      * @param to 结束课次
      * @return 空闲教室的字符串列表
      */
-    List<String> getClassroomUnused(Day day, int from, int to);
+    String[] getClassroomUnused(Day day, int from, int to);
 }

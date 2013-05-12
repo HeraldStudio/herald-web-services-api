@@ -43,12 +43,12 @@ public class ClassroomServiceImpl extends AbstractCsvService
         this.baseResourceUri = baseResourceUri;
     }
 
-    public List<String> getClassroomUnused(Day day, int from, int to) {
+    public String[] getClassroomUnused(Day day, int from, int to) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
                 .path(CLASSROOM_UNUSED_PATH)
                 .queryParam("day", day)
                 .queryParam("from", from).queryParam("to", to);
         URI uri = builder.build(day);
-        return getCsvByResouse(uri);
+        return getCsvByResouse(uri).get(0);
     }
 }
