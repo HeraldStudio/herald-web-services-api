@@ -115,7 +115,7 @@
 
     <xs:complexType name="booklistLinkType">
         <xs:attribute name="href" type="xs:anyURI" use="required"/>
-        <xs:attribute name="type" type="xs:token" use="optional" default="application/vnd.herald.library"/>
+        <xs:attribute name="type" type="xs:token" use="optional" default="application/vnd.herald.library+xml"/>
     </xs:complexType>
 
 </xs:schema>
