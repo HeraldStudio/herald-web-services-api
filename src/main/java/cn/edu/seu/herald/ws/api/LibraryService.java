@@ -21,7 +21,7 @@ public interface LibraryService {
 
     void renew(Book book) throws ServiceException;
 
-    void reserve(Book book) throws ServiceException;
+    void makeReservation(ReservationType reservation) throws ServiceException;
 
-    void cancelReservation(Book book) throws ServiceException;
+    void cancelReservation(ReservationType reservation) throws ServiceException;
 }
