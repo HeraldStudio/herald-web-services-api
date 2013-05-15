@@ -32,7 +32,7 @@ import org.apache.wink.common.model.rss.RssFeed;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-public class CampusInfoServiceImpl extends AbstractXmlService
+class CampusInfoServiceImpl extends AbstractXmlService
         implements CampusInfoService {
 
     private static final String AAO_URL = "/campus/aao";

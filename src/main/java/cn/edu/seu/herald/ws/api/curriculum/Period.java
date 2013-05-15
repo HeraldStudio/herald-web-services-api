@@ -21,14 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package cn.edu.seu.herald.ws.api.curriculum;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 /**
- * 先声网Web服务API包，包含与服务端交互所必须的类。
+ * 描述一个时间段，包括周次范围（如，1~16周），课节数范围（如，3~4节）
+ * @author rAy <predator.ray@gmail.com>
  */
-@javax.xml.bind.annotation.XmlSchema(
-        xmlns = @javax.xml.bind.annotation.XmlNs(
-        prefix = "curr",
-        namespaceURI = "http://herald.seu.edu.cn/ws/curriculum"),
-        location = "http://herald.seu.edu.cn/ws/curriculum curriculum.xsd",
-        namespace = "http://herald.seu.edu.cn/ws/curriculum",
-        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package cn.edu.seu.herald.ws.api;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "period")
+@XmlType(name = "periodType")
+public class Period {
+
+    @XmlAttribute
+    private int from;
+    @XmlAttribute
+    private int to;
+
+    Period() {
+    }
+
+    public Period(int from, int to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    /**
+     * 返回时间段的开始点
+     * @return 时间段的开始点
+     */
+    public int getFrom() {
+        return from;
+    }
+
+    /**
+     * 返回时间段的结束点
+     * @return 时间段的结束点
+     */
+    public int getTo() {
+        return to;
+    }
+}

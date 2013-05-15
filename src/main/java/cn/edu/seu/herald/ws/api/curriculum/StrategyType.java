@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.curriculum;
 
 /**
  * 上课的单双周策略

@@ -21,36 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
-
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
 /**
- * 课程表的时间表，包括了星期一至星期日的行程安排。
- * @author rAy <predator.ray@gmail.com>
+ * 先声网Web服务API包，包含与服务端交互所必须的类。
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "timeTable")
-@XmlType(name = "timeTableType")
-public class TimeTable {
-
-    @XmlElement(name = "schedule")
-    private List<Schedule> schedules;
-
-    /**
-     * 返回某一天的具体行程
-     * @return 某一天的具体行程
-     */
-    public List<Schedule> getSchedules() {
-        return schedules;
-    }
-
-    public void setSchedules(List<Schedule> schedules) {
-        this.schedules = schedules;
-    }
-}
+@javax.xml.bind.annotation.XmlSchema(
+        xmlns = @javax.xml.bind.annotation.XmlNs(
+        prefix = "curr",
+        namespaceURI = "http://herald.seu.edu.cn/ws/curriculum"),
+        location = "http://herald.seu.edu.cn/ws/curriculum curriculum.xsd",
+        namespace = "http://herald.seu.edu.cn/ws/curriculum",
+        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package cn.edu.seu.herald.ws.api.curriculum;

@@ -21,49 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.curriculum;
 
-import cn.edu.seu.herald.ws.api.impl.CampusInfoServiceImpl;
-import cn.edu.seu.herald.ws.api.impl.ClassroomServiceImpl;
-import cn.edu.seu.herald.ws.api.impl.CurriculumServiceImpl;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
- * 先声网Web服务抽象工厂的实现类，返回各产品的具体实现。
+ * 课程表的时间表，包括了星期一至星期日的行程安排。
  * @author rAy <predator.ray@gmail.com>
  */
-public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "timeTable")
+@XmlType(name = "timeTableType")
+public class TimeTable {
 
-    private final String baseResourceUri;
+    @XmlElement(name = "schedule")
+    private List<Schedule> schedules;
 
     /**
-     * 构造一个该工程的具体示例，需要传递服务的基础资源URI
-     * @param baseResourceUri 基础资源URI
+     * 返回某一天的具体行程
+     * @return 某一天的具体行程
      */
-    public HeraldWebServicesFactoryImpl(String baseResourceUri) {
-        this.baseResourceUri = baseResourceUri;
+    public List<Schedule> getSchedules() {
+        return schedules;
     }
 
-    /**
-     * 返回课程表服务
-     * @return 课程表服务
-     */
-    public CurriculumService getCurriculumService() {
-        return new CurriculumServiceImpl(baseResourceUri);
-    }
-
-    /**
-     * 获取教务处服务
-     * @return 教务处服务
-     */
-    public CampusInfoService getCampusInfoService() {
-        return new CampusInfoServiceImpl(baseResourceUri);
-    }
-
-    /**
-     * 获取教室服务
-     * @return 教室服务
-     */
-    public ClassroomService getClassroomService() {
-        return new ClassroomServiceImpl(baseResourceUri);
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }

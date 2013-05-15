@@ -23,6 +23,8 @@
  */
 package cn.edu.seu.herald.ws.api;
 
+import cn.edu.seu.herald.ws.api.curriculum.*;
+
 /**
  * 课程服务接口
  * @author rAy <predator.ray@gmail.com>
@@ -34,7 +36,7 @@ public interface CurriculumService {
      * @param cardNumber 学生的一卡通号
      * @return 本学期的课程表
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.Curriculum
+     * @see cn.edu.seu.herald.ws.api.curriculum.Curriculum
      */
     Curriculum getCurriculum(String cardNumber) throws ServiceException;
 
@@ -44,7 +46,7 @@ public interface CurriculumService {
      * @param term 学期，如11-12-3
      * @return 课程表
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.Curriculum
+     * @see cn.edu.seu.herald.ws.api.curriculum.Curriculum
      */
     Curriculum getCurriculum(String cardNumber, String term)
             throws ServiceException;
@@ -54,7 +56,7 @@ public interface CurriculumService {
      * @param cardNumber 学生的一卡通号
      * @return 时间表
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.TimeTable
+     * @see cn.edu.seu.herald.ws.api.curriculum.TimeTable
      */
     TimeTable getTimeTable(String cardNumber) throws ServiceException;
 
@@ -64,7 +66,7 @@ public interface CurriculumService {
      * @param term 学期，如11-12-3
      * @return 时间表
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.TimeTable
+     * @see cn.edu.seu.herald.ws.api.curriculum.TimeTable
      */
     TimeTable getTimeTable(String cardNumber, String term)
             throws ServiceException;
@@ -74,7 +76,7 @@ public interface CurriculumService {
      * @param cardNumber 学生的一卡通号
      * @return 今天的行程；如果没有，返回<code>null</code>
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.Schedule
+     * @see cn.edu.seu.herald.ws.api.curriculum.Schedule
      */
     Schedule getSchedule(String cardNumber) throws ServiceException;
 
@@ -84,7 +86,7 @@ public interface CurriculumService {
      * @param day 星期几
      * @return 对应星期的行程；如果没有，返回<code>null</code>
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.Schedule
+     * @see cn.edu.seu.herald.ws.api.curriculum.Schedule
      */
     Schedule getSchedule(String cardNumber, Day day) throws ServiceException;
 
@@ -95,7 +97,7 @@ public interface CurriculumService {
      * @param day 星期几
      * @return 对应学期、星期的行程；如果没有，返回<code>null</code>
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.Schedule
+     * @see cn.edu.seu.herald.ws.api.curriculum.Schedule
      */
     Schedule getSchedule(String cardNumber, String term, Day day)
             throws ServiceException;
@@ -105,7 +107,7 @@ public interface CurriculumService {
      * @param cardNumber 学生的一卡通号
      * @return 下一节要上的课；如果没有，返回<code>null</code>
      * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.Attendance
+     * @see cn.edu.seu.herald.ws.api.curriculum.Attendance
      */
     Attendance getNextAttendance(String cardNumber) throws ServiceException;
 }

@@ -23,7 +23,7 @@
  */
 package cn.edu.seu.herald.ws.api;
 
-import java.util.List;
+import cn.edu.seu.herald.ws.api.curriculum.Day;
 
 /**
  * 教室服务接口

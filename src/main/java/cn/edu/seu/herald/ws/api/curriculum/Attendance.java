@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.curriculum;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -52,7 +52,7 @@ public class Attendance {
      * 获取所需上课的名称，该名称是对于
      * <code>cn.edu.seu.herald.ws.api.Course.getName()</code>
      * 的引用，并与之一一对应。
-     * @see cn.edu.seu.herald.ws.api.Course#getName()
+     * @see Course#getName()
      * @return 所需上课的名称
      */
     public String getCourseName() {
@@ -61,7 +61,7 @@ public class Attendance {
 
     /**
      * 返回上课的节数。是一个时间范围。例如从3~4节。
-     * @see cn.edu.seu.herald.ws.api.Period
+     * @see Period
      * @return 上课的节数
      */
     public Period getPeriod() {
@@ -78,7 +78,7 @@ public class Attendance {
 
     /**
      * 返回上课策略，即单双周。
-     * @see cn.edu.seu.herald.ws.api.StrategyType
+     * @see StrategyType
      * @return 上课单双周策略
      */
     public StrategyType getStrategy() {

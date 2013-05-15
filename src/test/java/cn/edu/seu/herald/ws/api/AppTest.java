@@ -30,6 +30,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
+import cn.edu.seu.herald.ws.api.curriculum.*;
 import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;

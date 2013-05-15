@@ -21,49 +21,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.curriculum;
 
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * 描述一个时间段，包括周次范围（如，1~16周），课节数范围（如，3~4节）
+ * 描述某一天的课程行程
  * @author rAy <predator.ray@gmail.com>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "period")
-@XmlType(name = "periodType")
-public class Period {
+@XmlRootElement(name = "schedule")
+@XmlType(name = "scheduleType")
+public class Schedule {
 
     @XmlAttribute
-    private int from;
-    @XmlAttribute
-    private int to;
+    private Day day;
+    @XmlElement(name = "attendance")
+    private List<Attendance> attendances;
 
-    Period() {
-    }
-
-    public Period(int from, int to) {
-        this.from = from;
-        this.to = to;
+    /**
+     * 返回这是星期几的课程行程
+     * @see Day
+     * @return 星期几
+     */
+    public Day getDay() {
+        return day;
     }
 
     /**
-     * 返回时间段的开始点
-     * @return 时间段的开始点
+     * 返回这天需要上的课程已经对应的时间地点。
+     * @see Attendance
+     * @return 学生在某个特点时间段应该上的课的列表
      */
-    public int getFrom() {
-        return from;
+    public List<Attendance> getAttendances() {
+        return attendances;
     }
 
-    /**
-     * 返回时间段的结束点
-     * @return 时间段的结束点
-     */
-    public int getTo() {
-        return to;
+    public void setDay(Day day) {
+        this.day = day;
+    }
+
+    public void setAttendances(List<Attendance> attendances) {
+        this.attendances = attendances;
     }
 }

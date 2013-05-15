@@ -1,9 +1,26 @@
 <xs:schema
 	xmlns="http://herald.seu.edu.cn/ws/curriculum"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
 	targetNamespace="http://herald.seu.edu.cn/ws/curriculum"
-    elementFormDefault="qualified">
+    elementFormDefault="qualified"
+    jxb:extensionBindingPrefixes="xjc" jxb:version="1.0">
 
+    <xs:annotation>
+       <xs:appinfo>
+           <jxb:bindings>
+               <jxb:bindings>
+                   <jxb:globalBindings>
+                       <xjc:simple />
+                   </jxb:globalBindings>
+               </jxb:bindings>
+           </jxb:bindings>
+        </xs:appinfo>
+    </xs:annotation>
+    
+    <xs:element name="curriculum" type="curriculumType"/>
+    
     <xs:simpleType name="nameType">
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
@@ -106,5 +123,4 @@
         <xs:attribute name="cardNumber" type="cardNumberType"/>
     </xs:complexType>
 
-    <xs:element name="curriculum" type="curriculumType"/>
 </xs:schema>

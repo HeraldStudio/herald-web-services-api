@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
+package cn.edu.seu.herald.ws.api.curriculum;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -73,7 +73,7 @@ public class Course {
 
     /**
      * 返回课程的上课周次，如1~16周
-     * @see cn.edu.seu.herald.ws.api.Period
+     * @see Period
      * @return 上课周次
      */
     public Period getWeek() {

@@ -24,16 +24,15 @@
 package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.ClassroomService;
-import cn.edu.seu.herald.ws.api.Day;
+import cn.edu.seu.herald.ws.api.curriculum.Day;
 import java.net.URI;
-import java.util.List;
 import javax.ws.rs.core.UriBuilder;
 
 /**
  * 教室服务的实现类，基于jersey实现的RESTful Web Services的客户端。
  * @author rAy <predator.ray@gmail.com>
  */
-public class ClassroomServiceImpl extends AbstractCsvService
+class ClassroomServiceImpl extends AbstractCsvService
         implements ClassroomService {
 
     private static final String CLASSROOM_UNUSED_PATH = "/classroom/unused";

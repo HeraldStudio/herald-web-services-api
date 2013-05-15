@@ -42,6 +42,10 @@ abstract class AbstractXmlService {
         client = Client.create();
     }
 
+    protected WebResource getWebResource(URI uri) {
+        return client.resource(uri);
+    }
+
     /**
      *
      * @param <T> Jaxb类

@@ -23,14 +23,14 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
-import cn.edu.seu.herald.ws.api.Attendance;
-import cn.edu.seu.herald.ws.api.Curriculum;
+import cn.edu.seu.herald.ws.api.curriculum.Attendance;
+import cn.edu.seu.herald.ws.api.curriculum.Curriculum;
 import cn.edu.seu.herald.ws.api.CurriculumService;
-import cn.edu.seu.herald.ws.api.Day;
-import cn.edu.seu.herald.ws.api.Period;
-import cn.edu.seu.herald.ws.api.Schedule;
+import cn.edu.seu.herald.ws.api.curriculum.Day;
+import cn.edu.seu.herald.ws.api.curriculum.Period;
+import cn.edu.seu.herald.ws.api.curriculum.Schedule;
 import cn.edu.seu.herald.ws.api.ServiceException;
-import cn.edu.seu.herald.ws.api.TimeTable;
+import cn.edu.seu.herald.ws.api.curriculum.TimeTable;
 import java.net.URI;
 import java.util.Calendar;
 import java.util.Collections;
@@ -43,7 +43,7 @@ import javax.ws.rs.core.UriBuilder;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-public class CurriculumServiceImpl extends AbstractXmlService
+class CurriculumServiceImpl extends AbstractXmlService
         implements CurriculumService {
 
     private static final String CURR_TMPLT_1 = "/curriculum?cardNumber={1}";
