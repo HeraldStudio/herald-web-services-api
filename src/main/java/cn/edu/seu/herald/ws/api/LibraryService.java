@@ -11,17 +11,17 @@ public interface LibraryService {
 
     Booklist search(String keyword) throws ServiceException;
 
-    Booklist getBooksBorrowed(String borrowingHref) throws ServiceException;
+    Booklist getBooksBorrowedByUser(User user) throws ServiceException;
 
-    Booklist getBooksReserved(String reservingHref) throws ServiceException;
+    Booklist getBooksReservedByUser(User user) throws ServiceException;
 
-    Booklist getBorrowHistory(String borrowedHref) throws ServiceException;
+    Booklist getBorrowHistoryOfUser(User user) throws ServiceException;
 
-    Book getBookByHref(String bookHref) throws ServiceException;
+    Book getBookDetails(Book book) throws ServiceException;
 
-    void renew(String renewalHref) throws ServiceException;
+    void renew(Book book) throws ServiceException;
 
-    void reserve(String reservationHref) throws ServiceException;
+    void reserve(Book book) throws ServiceException;
 
-    void cancelReservation(String reservationHref) throws ServiceException;
+    void cancelReservation(Book book) throws ServiceException;
 }

@@ -19,9 +19,8 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     }
 
     @Override
-    public User logIn(String username, String password)
-            throws ServiceException {
-        return null;
+    public User logIn(String username, String password) throws ServiceException {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -30,62 +29,37 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     }
 
     @Override
-    public Booklist getBooksBorrowed(String borrowingHref) throws ServiceException {
+    public Booklist getBooksBorrowedByUser(User user) throws ServiceException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Booklist getBooksReserved(String reservingHref) throws ServiceException {
+    public Booklist getBooksReservedByUser(User user) throws ServiceException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Booklist getBorrowHistory(String borrowedHref) throws ServiceException {
+    public Booklist getBorrowHistoryOfUser(User user) throws ServiceException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Book getBookByHref(String bookHref) throws ServiceException {
+    public Book getBookDetails(Book book) throws ServiceException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void renew(String renewalHref) throws ServiceException {
-        URI renewalURI = URI.create(renewalHref);
-        ClientResponse response = getWebResource(renewalURI)
-                .post(ClientResponse.class);
-        int status = response.getStatus();
-        if (status == 204) {
-            return;
-        }
-
-        throw new UnexpectedStatusException(status);
+    public void renew(Book book) throws ServiceException {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void reserve(String reservationHref) throws ServiceException {
-        URI reservationURI = URI.create(reservationHref);
-        ClientResponse response = getWebResource(reservationURI)
-                .post(ClientResponse.class);
-        int status = response.getStatus();
-        if (status == 204) {
-            return;
-        }
-
-        throw new UnexpectedStatusException(status);
+    public void reserve(Book book) throws ServiceException {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void cancelReservation(String reservationHref)
-            throws ServiceException {
-        URI reservationURI = URI.create(reservationHref);
-        ClientResponse response = getWebResource(reservationURI)
-                .delete(ClientResponse.class);
-        int status = response.getStatus();
-        if (status == 204) {
-            return;
-        }
-
-        throw new UnexpectedStatusException(status);
+    public void cancelReservation(Book book) throws ServiceException {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }
