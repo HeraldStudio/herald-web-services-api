@@ -23,11 +23,7 @@
  */
 package cn.edu.seu.herald.ws.api.curriculum;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 /**
  * 课程类，包含课程名称、讲师、学分、上课周次区间。
@@ -46,6 +42,8 @@ public class Course {
     private double credit;
     @XmlElement
     private Period week;
+    @XmlAttribute
+    private String href;
 
     /**
      * 返回课程的名称
@@ -80,6 +78,10 @@ public class Course {
         return week;
     }
 
+    public String getHref() {
+        return href;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -94,5 +96,9 @@ public class Course {
 
     public void setWeek(Period week) {
         this.week = week;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
     }
 }

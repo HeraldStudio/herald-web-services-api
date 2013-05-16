@@ -47,6 +47,7 @@
             <xs:element name="credit" type="creditType"/>
             <xs:element name="week" type="periodType"/>
         </xs:sequence>
+        <xs:attribute name="href" type="xs:anyURI" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="coursesType">
