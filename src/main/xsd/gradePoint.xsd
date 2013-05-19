@@ -37,6 +37,7 @@
             <xs:element name="semester" type="semester"/>
         </xs:sequence>
         <xs:attribute name="type" type="xs:token"/>
+        <xs:attribute name="pe" type="xs:boolean"/>
     </xs:complexType>
 
     <xs:complexType name="score">
