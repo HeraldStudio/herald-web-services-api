@@ -112,7 +112,7 @@ class CurriculumServiceImpl extends AbstractXmlService
         Collections.sort(toBeOrdered, new AttendanceComparator());
         for (Attendance attendance : toBeOrdered) {
             Period period = attendance.getPeriod();
-            int from = period.getFrom();
+            int from = period.getFrom().intValue();
             if (from > startFrom) {
                 return attendance;
             }
@@ -124,7 +124,8 @@ class CurriculumServiceImpl extends AbstractXmlService
             implements Comparator<Attendance> {
 
         public int compare(Attendance o1, Attendance o2) {
-            return o1.getPeriod().getFrom() - o2.getPeriod().getTo();
+            return o1.getPeriod().getFrom().intValue()
+                    - o2.getPeriod().getTo().intValue();
         }
     }
 

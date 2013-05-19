@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns="http://herald.seu.edu.cn/ws/grade-point"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        targetNamespace="http://herald.seu.edu.cn/ws/grade-point"
+        elementFormDefault="qualified"
+        jxb:extensionBindingPrefixes="xjc" jxb:version="1.0">
+
+    <xs:annotation>
+        <xs:appinfo>
+            <jxb:bindings>
+                <jxb:bindings>
+                    <jxb:globalBindings>
+                        <xjc:simple />
+                    </jxb:globalBindings>
+                </jxb:bindings>
+            </jxb:bindings>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <xs:element name="gradePoint" type="gradePoint"/>
+
+    <xs:complexType name="gradePoint">
+        <xs:sequence>
+            <xs:element name="subject" type="subject" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="subject">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="credit" type="credit"/>
+            <xs:element name="score" type="score"/>
+            <xs:element name="point" type="xs:decimal"/>
+            <xs:element name="semester" type="semester"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:token"/>
+    </xs:complexType>
+
+    <xs:complexType name="score">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type" type="xs:token"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="semester">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9][0-9]-[0-9][0-9]-[1-3]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="credit">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

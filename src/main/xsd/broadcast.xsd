@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns="http://herald.seu.edu.cn/ws/morning-exercise"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        targetNamespace="http://herald.seu.edu.cn/ws/morning-exercise"
+        elementFormDefault="qualified"
+        jxb:extensionBindingPrefixes="xjc" jxb:version="1.0">
+
+    <xs:annotation>
+        <xs:appinfo>
+            <jxb:bindings>
+                <jxb:bindings>
+                    <jxb:globalBindings>
+                        <xjc:simple />
+                    </jxb:globalBindings>
+                </jxb:bindings>
+            </jxb:bindings>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <xs:element name="broadcast">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="info" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="date" type="xs:date"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

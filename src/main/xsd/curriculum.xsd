@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
 	xmlns="http://herald.seu.edu.cn/ws/curriculum"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -19,44 +20,44 @@
         </xs:appinfo>
     </xs:annotation>
     
-    <xs:element name="curriculum" type="curriculumType"/>
+    <xs:element name="curriculum" type="curriculum"/>
     
-    <xs:simpleType name="nameType">
+    <xs:simpleType name="name">
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
 
-    <xs:simpleType name="lecturerType">
+    <xs:simpleType name="lecturer">
         <xs:restriction base="xs:string"/>
     </xs:simpleType>
 
-    <xs:simpleType name="creditType">
+    <xs:simpleType name="credit">
         <xs:restriction base="xs:decimal">
             <xs:minInclusive value="0.0"/>
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="periodType">
+    <xs:complexType name="period">
         <xs:attribute name="from" type="xs:positiveInteger" use="required"/>
         <xs:attribute name="to" type="xs:positiveInteger" use="required"/>
     </xs:complexType>
 
-    <xs:complexType name="courseType">
+    <xs:complexType name="course">
         <xs:sequence>
-            <xs:element name="name" type="nameType"/>
-            <xs:element name="lecturer" type="lecturerType"/>
-            <xs:element name="credit" type="creditType"/>
-            <xs:element name="week" type="periodType"/>
+            <xs:element name="name" type="name"/>
+            <xs:element name="lecturer" type="lecturer"/>
+            <xs:element name="credit" type="credit"/>
+            <xs:element name="week" type="period"/>
         </xs:sequence>
-        <xs:attribute name="href" type="xs:anyURI" use="required"/>
+        <xs:attribute name="students" type="xs:anyURI"/>
     </xs:complexType>
 
-    <xs:complexType name="coursesType">
+    <xs:complexType name="courses">
         <xs:sequence>
-            <xs:element name="course" type="courseType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="course" type="course" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="dayType">
+    <xs:simpleType name="day">
         <xs:restriction base="xs:string">
             <xs:enumeration value="MON"/>
             <xs:enumeration value="TUE"/>
@@ -68,7 +69,7 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="strategyType">
+    <xs:simpleType name="strategy">
         <xs:restriction base="xs:string">
             <xs:enumeration value="NONE"/>
             <xs:enumeration value="ODD"/>
@@ -76,52 +77,52 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="attendanceType">
+    <xs:complexType name="attendance">
         <xs:sequence>
-            <xs:element name="period" type="periodType"/>
+            <xs:element name="period" type="period"/>
         </xs:sequence>
-        <xs:attribute name="courseName" type="nameType" use="required"/>
+        <xs:attribute name="courseName" type="name" use="required"/>
         <xs:attribute name="place" type="xs:string" use="required"/>
-        <xs:attribute name="strategy" type="strategyType" default="NONE"/>
+        <xs:attribute name="strategy" type="strategy" default="NONE"/>
     </xs:complexType>
 
-    <xs:complexType name="scheduleType">
+    <xs:complexType name="schedule">
         <xs:sequence>
-            <xs:element name="attendance" type="attendanceType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="attendance" type="attendance" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
-        <xs:attribute name="day" type="dayType" use="required"/>
+        <xs:attribute name="day" type="day" use="required"/>
     </xs:complexType>
 
-    <xs:complexType name="timeTableType">
+    <xs:complexType name="timeTable">
         <xs:sequence>
-            <xs:element name="schedule" type="scheduleType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="schedule" type="schedule" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="termType">
+    <xs:simpleType name="semester">
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9][0-9]-[0-9][0-9]-[1-3]"/>
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="cardNumberType">
+    <xs:simpleType name="cardNumber">
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{9}"/>
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="curriculumType">
+    <xs:complexType name="curriculum">
         <xs:sequence>
-            <xs:element name="courses" type="coursesType"/>
-            <xs:element name="timeTable" type="timeTableType">
+            <xs:element name="courses" type="courses"/>
+            <xs:element name="timeTable" type="timeTable">
                 <xs:unique name="uniqueScheduleDay">
                     <xs:selector xpath="schedule"/>
                     <xs:field xpath="@day"/>
                 </xs:unique>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="term" type="termType"/>
-        <xs:attribute name="cardNumber" type="cardNumberType"/>
+        <xs:attribute name="term" type="semester"/>
+        <xs:attribute name="cardNumber" type="cardNumber"/>
     </xs:complexType>
 
 </xs:schema>

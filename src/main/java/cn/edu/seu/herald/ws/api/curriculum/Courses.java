@@ -12,24 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for schedule complex type.
+ * <p>Java class for courses complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="schedule">
+ * &lt;complexType name="courses">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="attendance" type="{http://herald.seu.edu.cn/ws/curriculum}attendance" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="course" type="{http://herald.seu.edu.cn/ws/curriculum}course" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
- *       &lt;attribute name="day" use="required" type="{http://herald.seu.edu.cn/ws/curriculum}day" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -38,71 +36,45 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "schedule", propOrder = {
-    "attendances"
+@XmlType(name = "courses", propOrder = {
+    "courses"
 })
-public class Schedule {
+public class Courses {
 
-    @XmlElement(name = "attendance")
-    protected List<Attendance> attendances;
-    @XmlAttribute(required = true)
-    protected Day day;
+    @XmlElement(name = "course")
+    protected List<Course> courses;
 
     /**
-     * Gets the value of the attendances property.
+     * Gets the value of the courses property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the attendances property.
+     * This is why there is not a <CODE>set</CODE> method for the courses property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAttendances().add(newItem);
+     *    getCourses().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Attendance }
+     * {@link Course }
      * 
      * 
      */
-    public List<Attendance> getAttendances() {
-        if (attendances == null) {
-            attendances = new ArrayList<Attendance>();
+    public List<Course> getCourses() {
+        if (courses == null) {
+            courses = new ArrayList<Course>();
         }
-        return this.attendances;
+        return this.courses;
     }
 
-    public void setAttendances(List<Attendance> attendances) {
-        this.attendances = attendances;
-    }
-
-    /**
-     * Gets the value of the day property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Day }
-     *     
-     */
-    public Day getDay() {
-        return day;
-    }
-
-    /**
-     * Sets the value of the day property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Day }
-     *     
-     */
-    public void setDay(Day value) {
-        this.day = value;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
 }
