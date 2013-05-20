@@ -19,7 +19,7 @@
            </jxb:bindings>
         </xs:appinfo>
     </xs:annotation>
-    
+
     <xs:element name="curriculum" type="curriculum"/>
     
     <xs:simpleType name="name">
@@ -124,5 +124,28 @@
         <xs:attribute name="term" type="semester"/>
         <xs:attribute name="cardNumber" type="cardNumber"/>
     </xs:complexType>
+
+    <xs:element name="studentList" type="studentList"/>
+
+    <xs:complexType name="studentList">
+        <xs:sequence>
+            <xs:element name="student" type="student" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="student">
+        <xs:sequence>
+            <xs:element name="cardNumber" type="cardNumber"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="studentNumber" type="studentNumber"/>
+        </xs:sequence>
+        <xs:attribute name="curriculum" type="xs:anyURI" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="studentNumber">
+        <xs:restriction base="xs:token">
+            <xs:pattern value="\d{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
 
 </xs:schema>
