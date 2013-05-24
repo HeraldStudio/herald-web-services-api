@@ -21,6 +21,8 @@
     </xs:annotation>
 
     <xs:element name="curriculum" type="curriculum"/>
+
+    <xs:element name="course" type="course"/>
     
     <xs:simpleType name="name">
         <xs:restriction base="xs:string"/>
@@ -47,8 +49,9 @@
             <xs:element name="lecturer" type="lecturer"/>
             <xs:element name="credit" type="credit"/>
             <xs:element name="week" type="period"/>
+            <xs:element name="students" type="studentList" minOccurs="0"/>
         </xs:sequence>
-        <xs:attribute name="students" type="xs:anyURI"/>
+        <xs:attribute name="href" type="xs:anyURI"/>
     </xs:complexType>
 
     <xs:complexType name="courses">
