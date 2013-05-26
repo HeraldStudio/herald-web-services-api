@@ -35,7 +35,7 @@
 
 <h2>1 简介</h2>
 
-<p>先声网Web服务是先声网对外开放的校园资源接口。基于RESTful Web Services发布。</p>
+<p>先声网Web服务是先声网对外开放的校园资源接口。基于Web Services发布。</p>
 
 <h2>2 如何使用</h2>
 
@@ -60,10 +60,14 @@
 
 <h3>2.2 代码示例</h3>
 
-<pre><code>final String HERALD_WS_BASE_URI = "http://herald.seu.edu.cn/ws";
+<pre><code>// Web服务地址
+final String HERALD_WS_BASE_URI = "http://herald.seu.edu.cn/ws";
+// 构造Web服务工厂
 HeraldWebServicesFactory factory = new HeraldWebServicesFactoryImpl(HERALD_WS_BASE_URI);
+// 获取某个特定的Web服务，如下是获取课程表服务的示例
 CurriculumService curriculumService = factory.getCurriculumService();
 
+// 调用课程表服务下的方法，如下是根据一卡通获得本学期课表的示例
 String cardNumber = "213000000";
 Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 </code></pre>
@@ -81,23 +85,19 @@ Curriculum curriculum = curriculumService.getCurriculum(cardNumber);
 
 <p><a href="https://github.com/HeraldStudio/herald-web-services-api/wiki">点击进入Wiki页面</a></p>
 
-<h2>3 资源列表</h2>
+<h2>3 服务列表</h2>
 
 <p>所有可用的资源均可以通过HeraldWebServicesFactory中获取。目前先声网Web服务发布以下资源</p>
 
 <ul>
-<li>课程表资源（<code>cn.edu.seu.herald.ws.api.CurriculumService</code>）
-
-<ul>
-<li>课程表（<code>cn.edu.seu.herald.ws.api.Curriculum</code>）</li>
-<li>时间表（<code>cn.edu.seu.herald.ws.api.TimeTable</code>）</li>
-<li>行程安排（<code>cn.edu.seu.herald.ws.api.Schedule</code>）</li>
-<li>下节课（<code>cn.edu.seu.herald.ws.api.Attendance</code>）</li>
-</ul>
-</li>
+<li>安卓客户端更新服务（<code>cn.edu.seu.herald.ws.api.AndroidClientUpdateService</code>）</li>
+<li>校园咨询服务（<code>cn.edu.seu.herald.ws.api.CampusInfoService</code>）</li>
+<li>教室服务（<code>cn.edu.seu.herald.ws.api.ClassroomService</code>）</li>
+<li>课程表服务（<code>cn.edu.seu.herald.ws.api.CurriculumService</code>）</li>
+<li>绩点服务（<code>cn.edu.seu.herald.ws.api.GradePointService</code>）</li>
+<li>图书馆服务（<code>cn.edu.seu.herald.ws.api.LibraryService</code>）</li>
+<li>跑操服务（<code>cn.edu.seu.herald.ws.api.MorningExerciseService</code>）</li>
 </ul><p>使用方法详见<a href="https://github.com/HeraldStudio/herald-web-services-api/wiki">wiki</a></p>
-
-<p>（目前处于开发初期，敬请期待更多资源…）</p>
       </section>
     </div>
 
