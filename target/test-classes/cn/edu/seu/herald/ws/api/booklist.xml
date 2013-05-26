@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<booklist xmlns="http://herald.seu.edu.cn/ws/library">
+    <book href="http://herald.seu.edu.cn/ws/library/book/1">
+        <name>Python参考手册</name>
+        <author>(美) David M. Beazley著</author>
+        <collection available="0" quantity="3"/>
+    </book>
+    <book href="http://herald.seu.edu.cn/ws/library/book/2">
+        <name>Visual C++ 6.0完全自学宝典</name>
+        <author>朱洪波编著</author>
+        <collection available="0" quantity="3"/>
+    </book>
+</booklist>

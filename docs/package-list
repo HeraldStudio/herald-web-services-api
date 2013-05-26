@@ -1,2 +1,7 @@
 cn.edu.seu.herald.ws.api
+cn.edu.seu.herald.ws.api.curriculum
+cn.edu.seu.herald.ws.api.exercise
+cn.edu.seu.herald.ws.api.gpa
 cn.edu.seu.herald.ws.api.impl
+cn.edu.seu.herald.ws.api.library
+cn.edu.seu.herald.ws.api.update
