@@ -24,6 +24,7 @@
 package cn.edu.seu.herald.ws.api;
 
 import cn.edu.seu.herald.ws.api.exercise.Broadcast;
+import cn.edu.seu.herald.ws.api.exercise.RunTimesData;
 
 /**
  * 跑擦服务接口
@@ -31,12 +32,28 @@ import cn.edu.seu.herald.ws.api.exercise.Broadcast;
  */
 public interface MorningExerciseService {
 
+    /**
+     * 根据校历返回剩余跑操次数
+     * @return 剩余跑操次数
+     * @throws ServiceException
+     */
     int getRemainDays() throws ServiceException;
 
+    /**
+     * 查询跑操播报，查询当天是否跑操
+     * @return 跑操播报
+     * @throws ServiceException
+     * @see cn.edu.seu.herald.ws.api.exercise.Broadcast
+     */
     Broadcast getRunBroadcast() throws ServiceException;
 
-    Object getRunTimesData() throws ServiceException;
-
-    Object getExerciseInfo(String username, String password)
+    /**
+     * 查询当前用户跑操信息
+     * @param username 体育系用户名
+     * @param password 体育系密码
+     * @return 跑操信息
+     * @throws ServiceException
+     */
+    RunTimesData getRunTimesData(String username, String password)
             throws ServiceException;
 }

@@ -5,6 +5,9 @@
 // Generated on: 2013.05.18 at 02:20:01 ���� CST 
 //
 
+/**
+ * 安卓应用更新服务所需类
+ */
 @javax.xml.bind.annotation.XmlSchema(
         namespace = "http://herald.seu.edu.cn/ws/android-update",
         elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)

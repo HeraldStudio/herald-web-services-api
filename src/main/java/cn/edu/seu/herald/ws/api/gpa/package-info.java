@@ -28,5 +28,8 @@
 // Generated on: 2013.05.19 at 03:43:46 ���� CST 
 //
 
+/**
+ * 绩点服务所需类
+ */
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://herald.seu.edu.cn/ws/grade-point", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package cn.edu.seu.herald.ws.api.gpa;

@@ -29,4 +29,20 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="runTimesData" type="runTimesData"/>
+
+    <xs:complexType name="runTimesData">
+        <xs:sequence>
+            <xs:element name="times" type="xs:nonNegativeInteger"/>
+            <xs:element name="rate" type="xs:decimal"/>
+            <xs:element name="runTime" type="runTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="runTime">
+        <xs:sequence>
+            <xs:element name="time" type="xs:time"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>

@@ -21,41 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package cn.edu.seu.herald.ws.api;
-
 /**
- * 先声网Web服务抽象工厂接口
- * @author rAy <predator.ray@gmail.com>
+ * 先声网Web服务接口包
  */
-public interface HeraldWebServicesFactory {
-
-    /**
-     * 获取课程表服务
-     * @return 课程表服务
-     */
-    CurriculumService getCurriculumService();
-
-    /**
-     * 获取教务处服务
-     * @return 教务处服务
-     */
-    CampusInfoService getCampusInfoService();
-
-    /**
-     * 获取教室服务
-     * @return 教室服务
-     */
-    ClassroomService getClassroomService();
-
-    /**
-     * 获取图书馆服务
-     * @return 图书馆服务
-     */
-    LibraryService getLibraryService();
-
-    /**
-     * 获取安卓客户端更新服务
-     * @return 安卓客户端更新服务
-     */
-    AndroidClientUpdateService getAndroidClientUpdateService();
-}
+package cn.edu.seu.herald.ws.api;

@@ -28,5 +28,8 @@
 // Generated on: 2013.05.24 at 05:40:35 ���� CST 
 //
 
+/**
+ * 课程表服务所需类
+ */
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://herald.seu.edu.cn/ws/curriculum", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package cn.edu.seu.herald.ws.api.curriculum;

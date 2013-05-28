@@ -31,29 +31,30 @@
 
 package cn.edu.seu.herald.ws.api.exercise;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for runTimesData complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="runTimesData">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="info" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="times" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger"/>
+ *         &lt;element name="rate" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
+ *         &lt;element name="runTime" type="{http://herald.seu.edu.cn/ws/morning-exercise}runTime"/>
  *       &lt;/sequence>
- *       &lt;attribute name="date" type="{http://www.w3.org/2001/XMLSchema}date" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -62,64 +63,92 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "info"
+@XmlType(name = "runTimesData", propOrder = {
+    "times",
+    "rate",
+    "runTime"
 })
-@XmlRootElement(name = "broadcast")
-public class Broadcast {
+@XmlRootElement(name = "runTimesData")
+public class RunTimesData {
 
     @XmlElement(required = true)
-    protected String info;
-    @XmlAttribute
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar date;
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger times;
+    @XmlElement(required = true)
+    protected BigDecimal rate;
+    @XmlElement(required = true)
+    protected RunTime runTime;
 
     /**
-     * Gets the value of the info property.
+     * Gets the value of the times property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public String getInfo() {
-        return info;
+    public BigInteger getTimes() {
+        return times;
     }
 
     /**
-     * Sets the value of the info property.
+     * Sets the value of the times property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public void setInfo(String value) {
-        this.info = value;
+    public void setTimes(BigInteger value) {
+        this.times = value;
     }
 
     /**
-     * Gets the value of the date property.
+     * Gets the value of the rate property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link BigDecimal }
      *     
      */
-    public XMLGregorianCalendar getDate() {
-        return date;
+    public BigDecimal getRate() {
+        return rate;
     }
 
     /**
-     * Sets the value of the date property.
+     * Sets the value of the rate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link BigDecimal }
      *     
      */
-    public void setDate(XMLGregorianCalendar value) {
-        this.date = value;
+    public void setRate(BigDecimal value) {
+        this.rate = value;
+    }
+
+    /**
+     * Gets the value of the runTime property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RunTime }
+     *     
+     */
+    public RunTime getRunTime() {
+        return runTime;
+    }
+
+    /**
+     * Sets the value of the runTime property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RunTime }
+     *     
+     */
+    public void setRunTime(RunTime value) {
+        this.runTime = value;
     }
 
 }

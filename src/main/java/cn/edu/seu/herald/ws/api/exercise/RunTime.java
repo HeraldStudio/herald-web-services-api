@@ -28,5 +28,68 @@
 // Generated on: 2013.05.28 at 09:51:33 ���� CST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://herald.seu.edu.cn/ws/morning-exercise", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+
 package cn.edu.seu.herald.ws.api.exercise;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>Java class for runTime complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="runTime">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}time"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "runTime", propOrder = {
+    "time"
+})
+public class RunTime {
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "time")
+    protected XMLGregorianCalendar time;
+
+    /**
+     * Gets the value of the time property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getTime() {
+        return time;
+    }
+
+    /**
+     * Sets the value of the time property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setTime(XMLGregorianCalendar value) {
+        this.time = value;
+    }
+
+}

@@ -24,10 +24,6 @@
 package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.*;
-import cn.edu.seu.herald.ws.api.impl.CampusInfoServiceImpl;
-import cn.edu.seu.herald.ws.api.impl.ClassroomServiceImpl;
-import cn.edu.seu.herald.ws.api.impl.CurriculumServiceImpl;
-import cn.edu.seu.herald.ws.api.impl.LibraryServiceImpl;
 
 /**
  * 先声网Web服务抽象工厂的实现类，返回各产品的具体实现。
@@ -79,5 +75,14 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
     @Override
     public LibraryService getLibraryService() {
         return new LibraryServiceImpl(baseResourceUri);
+    }
+
+    /**
+     * 获取安卓客户端更新服务
+     * @return 安卓客户端更新服务
+     */
+    @Override
+    public AndroidClientUpdateService getAndroidClientUpdateService() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

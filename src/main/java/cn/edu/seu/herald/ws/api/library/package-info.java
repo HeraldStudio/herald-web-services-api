@@ -28,6 +28,9 @@
 // Generated on: 2013.05.15 at 02:17:05 ���� CST 
 //
 
+/**
+ * 图书馆服务所需类
+ */
 @javax.xml.bind.annotation.XmlSchema(
         namespace = "http://herald.seu.edu.cn/ws/library",
         elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
