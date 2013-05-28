@@ -28,5 +28,8 @@
 // Generated on: 2013.05.28 at 09:51:33 ���� CST 
 //
 
+/**
+ * 跑操服务所需的类
+ */
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://herald.seu.edu.cn/ws/morning-exercise", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package cn.edu.seu.herald.ws.api.exercise;
