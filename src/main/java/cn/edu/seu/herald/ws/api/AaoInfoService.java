@@ -35,7 +35,7 @@ public interface AaoInfoService {
     /**
      * 获取教务处的信息RSS供稿
      * @param limit 返回供稿的大小限制
-     * @return 教务处的信息供稿
+     * @return 教务处的信息供稿。若没有更新，则返回<code>null</code>
      */
     RssFeed getAaoRssFeed(int limit);
 
@@ -43,7 +43,7 @@ public interface AaoInfoService {
      * 获取教务处的信息RSS供稿
      * @param uuid 当前最新供稿的UUID
      * @param limit 返回供稿的大小限制
-     * @return 教务处的信息供稿
+     * @return 教务处的信息供稿。若没有更新，则返回<code>null</code>
      */
     RssFeed getAaoRssFeed(String uuid, int limit);
 }

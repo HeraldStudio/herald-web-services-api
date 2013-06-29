@@ -44,14 +44,14 @@ class AaoInfoServiceImpl extends AbstractXmlService
 
     public RssFeed getAaoRssFeed(int limit) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
-                .path(AAO_URL);
+                .path(AAO_URL).queryParam("limit", limit);
         URI uri = builder.build();
         return getJaxbObjectByResource(uri, RssFeed.class);
     }
 
     public RssFeed getAaoRssFeed(String uuid, int limit) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
-                .path(AAO_URL);
+                .path(AAO_URL).queryParam("limit", limit);
         URI uri = builder.build();
         return getJaxbObjectByResource(uri, uuid, RssFeed.class);
     }
