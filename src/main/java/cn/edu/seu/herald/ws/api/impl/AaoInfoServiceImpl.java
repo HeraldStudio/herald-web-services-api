@@ -23,7 +23,7 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
-import cn.edu.seu.herald.ws.api.CampusInfoService;
+import cn.edu.seu.herald.ws.api.AaoInfoService;
 import java.net.URI;
 import javax.ws.rs.core.UriBuilder;
 import org.apache.wink.common.model.rss.RssFeed;
@@ -32,24 +32,24 @@ import org.apache.wink.common.model.rss.RssFeed;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-class CampusInfoServiceImpl extends AbstractXmlService
-        implements CampusInfoService {
+class AaoInfoServiceImpl extends AbstractXmlService
+        implements AaoInfoService {
 
     private static final String AAO_URL = "/campus/aao";
     private String baseResourceUri;
 
-    public CampusInfoServiceImpl(String baseResourceUri) {
+    public AaoInfoServiceImpl(String baseResourceUri) {
         this.baseResourceUri = baseResourceUri;
     }
 
-    public RssFeed getAaoRssFeed() {
+    public RssFeed getAaoRssFeed(int limit) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
                 .path(AAO_URL);
         URI uri = builder.build();
         return getJaxbObjectByResource(uri, RssFeed.class);
     }
 
-    public RssFeed getAaoRssFeed(String uuid) {
+    public RssFeed getAaoRssFeed(String uuid, int limit) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
                 .path(AAO_URL);
         URI uri = builder.build();

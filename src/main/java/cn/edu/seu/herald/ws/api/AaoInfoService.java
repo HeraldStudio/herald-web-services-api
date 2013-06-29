@@ -30,18 +30,20 @@ import org.apache.wink.common.model.rss.RssFeed;
  * 校园信息服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface CampusInfoService {
+public interface AaoInfoService {
 
     /**
      * 获取教务处的信息RSS供稿
+     * @param limit 返回供稿的大小限制
      * @return 教务处的信息供稿
      */
-    RssFeed getAaoRssFeed();
+    RssFeed getAaoRssFeed(int limit);
 
     /**
      * 获取教务处的信息RSS供稿
      * @param uuid 当前最新供稿的UUID
+     * @param limit 返回供稿的大小限制
      * @return 教务处的信息供稿
      */
-    RssFeed getAaoRssFeed(String uuid);
+    RssFeed getAaoRssFeed(String uuid, int limit);
 }

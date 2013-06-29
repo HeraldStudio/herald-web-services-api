@@ -39,7 +39,7 @@ public interface HeraldWebServicesFactory {
      * 获取教务处服务
      * @return 教务处服务
      */
-    CampusInfoService getCampusInfoService();
+    AaoInfoService getCampusInfoService();
 
     /**
      * 获取教室服务

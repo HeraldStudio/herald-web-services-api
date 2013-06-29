@@ -55,8 +55,8 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      * @return 教务处服务
      */
     @Override
-    public CampusInfoService getCampusInfoService() {
-        return new CampusInfoServiceImpl(baseResourceUri);
+    public AaoInfoService getCampusInfoService() {
+        return new AaoInfoServiceImpl(baseResourceUri);
     }
 
     /**
