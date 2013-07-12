@@ -50,7 +50,7 @@
 所有可用的资源均可以通过HeraldWebServicesFactory中获取。目前先声网Web服务发布以下资源
 
 * 安卓客户端更新服务（``` cn.edu.seu.herald.ws.api.AndroidClientUpdateService ```）
-* 校园咨询服务（``` cn.edu.seu.herald.ws.api.CampusInfoService ```）
+* 校园咨询服务（``` cn.edu.seu.herald.ws.api.AaoInfoService ```）
 * 教室服务（``` cn.edu.seu.herald.ws.api.ClassroomService ```）
 * 课程表服务（``` cn.edu.seu.herald.ws.api.CurriculumService ```）
 * 绩点服务（```cn.edu.seu.herald.ws.api.GradePointService```）
