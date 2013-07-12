@@ -99,6 +99,8 @@ public class Book {
     @XmlAttribute(required = true)
     @XmlSchemaType(name = "anyURI")
     protected String href;
+    @javax.xml.bind.annotation.XmlTransient
+    private static String marcNo;
 
     /**
      * Gets the value of the name property.
@@ -295,6 +297,14 @@ public class Book {
      */
     public void setHref(String value) {
         this.href = value;
+    }
+
+    public String getMarcNo() {
+        return marcNo;
+    }
+
+    public void setMarcNo(String marcNo) {
+        this.marcNo = marcNo;
     }
 
 }
