@@ -31,13 +31,7 @@
 
 package cn.edu.seu.herald.ws.api.library;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -108,6 +102,8 @@ public class User {
     @XmlAttribute
     @XmlSchemaType(name = "anyURI")
     protected String href;
+    @XmlTransient
+    private String token;
 
     /**
      * Gets the value of the studentNumber property.
@@ -323,6 +319,14 @@ public class User {
      */
     public void setHref(String value) {
         this.href = value;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }
