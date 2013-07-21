@@ -20,15 +20,6 @@
         </xs:appinfo>
     </xs:annotation>
 
-    <xs:element name="broadcast">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="info" type="xs:string"/>
-            </xs:sequence>
-            <xs:attribute name="date" type="xs:date"/>
-        </xs:complexType>
-    </xs:element>
-
     <xs:element name="runTimesData" type="runTimesData"/>
 
     <xs:complexType name="runTimesData">
@@ -41,7 +32,7 @@
 
     <xs:complexType name="runTime">
         <xs:sequence>
-            <xs:element name="time" type="xs:time"/>
+            <xs:element name="time" type="xs:time" maxOccurs="5"/>
         </xs:sequence>
     </xs:complexType>
 

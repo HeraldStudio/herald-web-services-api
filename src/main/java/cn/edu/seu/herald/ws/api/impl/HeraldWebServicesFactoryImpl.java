@@ -83,6 +83,15 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public AndroidClientUpdateService getAndroidClientUpdateService() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
+    }
+
+    /**
+     * 获取跑操服务
+     * @return 跑操服务
+     */
+    @Override
+    public MorningExerciseService getMorningExerciseService() {
+        return null;
     }
 }

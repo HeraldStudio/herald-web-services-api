@@ -23,7 +23,6 @@
  */
 package cn.edu.seu.herald.ws.api;
 
-import cn.edu.seu.herald.ws.api.exercise.Broadcast;
 import cn.edu.seu.herald.ws.api.exercise.RunTimesData;
 
 /**
@@ -38,14 +37,6 @@ public interface MorningExerciseService {
      * @throws ServiceException
      */
     int getRemainDays() throws ServiceException;
-
-    /**
-     * 查询跑操播报，查询当天是否跑操
-     * @return 跑操播报
-     * @throws ServiceException
-     * @see cn.edu.seu.herald.ws.api.exercise.Broadcast
-     */
-    Broadcast getRunBroadcast() throws ServiceException;
 
     /**
      * 查询当前用户跑操信息

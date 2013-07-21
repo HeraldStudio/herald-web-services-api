@@ -58,4 +58,10 @@ public interface HeraldWebServicesFactory {
      * @return 安卓客户端更新服务
      */
     AndroidClientUpdateService getAndroidClientUpdateService();
+
+    /**
+     * 获取跑操服务
+     * @return 跑操服务
+     */
+    MorningExerciseService getMorningExerciseService();
 }
