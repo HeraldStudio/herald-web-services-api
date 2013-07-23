@@ -38,9 +38,9 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
 
     private static final String LIBRARY_URI = "/library";
     private static final String LOG_IN_TEMPLATE =
-            LIBRARY_URI + "/user?username={1}&password={2}";
+            LIBRARY_URI + "/user";
     private static final String SEARCH_TEMPLATE =
-            LIBRARY_URI + "/search?keyword={1}";
+            LIBRARY_URI + "/search";
     private String baseResourceUri;
 
     public LibraryServiceImpl(String baseResourceUri) {
@@ -51,14 +51,17 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     public User logIn(String username, String password)
             throws ServiceException {
         URI uri = UriBuilder.fromUri(baseResourceUri + LOG_IN_TEMPLATE)
-                .build(username, password);
+                .queryParam("username", username)
+                .queryParam("password", password)
+                .build();
         return getJaxbObjectByResource(uri, User.class);
     }
 
     @Override
     public Booklist search(String keyword) throws ServiceException {
         URI uri = UriBuilder.fromUri(baseResourceUri + SEARCH_TEMPLATE)
-                .build(keyword);
+                .queryParam("keyword", keyword)
+                .build();
         return getJaxbObjectByResource(uri, Booklist.class);
     }
 
