@@ -23,16 +23,6 @@
  */
 package cn.edu.seu.herald.ws.api;
 
-import java.io.InputStream;
-import java.util.LinkedList;
-import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-
-import cn.edu.seu.herald.ws.api.curriculum.*;
-import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

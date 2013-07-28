@@ -83,7 +83,7 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public AndroidClientUpdateService getAndroidClientUpdateService() {
-        return null;
+        return new AndroidClientUpdateServiceImpl(baseResourceUri);
     }
 
     /**
@@ -92,6 +92,6 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public MorningExerciseService getMorningExerciseService() {
-        return null;
+        return new MorningExerciseServiceImpl(baseResourceUri);
     }
 }

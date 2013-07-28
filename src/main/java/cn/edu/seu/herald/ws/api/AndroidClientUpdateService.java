@@ -34,6 +34,7 @@ public interface AndroidClientUpdateService {
     /**
      * 获取最近版本的更新信息
      * @return 最新版本的更新信息
+     * @throws ServiceException
      */
-    Update getNewVersion();
+    Update getNewVersion() throws ServiceException;
 }
