@@ -29,7 +29,7 @@ import cn.edu.seu.herald.ws.api.library.*;
  * 图书馆服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface LibraryService {
+public interface LibraryService extends ConfigurableService {
 
     /**
      * 登录图书馆

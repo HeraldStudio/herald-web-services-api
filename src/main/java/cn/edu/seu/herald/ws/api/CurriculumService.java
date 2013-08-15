@@ -29,7 +29,7 @@ import cn.edu.seu.herald.ws.api.curriculum.*;
  * 课程服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface CurriculumService {
+public interface CurriculumService extends ConfigurableService {
 
     /**
      * 根据一卡通号获取本学期的课程表

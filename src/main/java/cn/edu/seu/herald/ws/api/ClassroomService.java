@@ -29,7 +29,7 @@ import cn.edu.seu.herald.ws.api.curriculum.Day;
  * 教室服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface ClassroomService {
+public interface ClassroomService extends ConfigurableService {
 
     /**
      * 返回所有空闲教室的列表

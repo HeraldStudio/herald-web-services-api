@@ -23,13 +23,13 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
+import cn.edu.seu.herald.ws.api.ConfigurableService;
 import cn.edu.seu.herald.ws.api.ServiceException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import org.apache.wink.common.model.csv.CsvTable;
 
 import java.net.URI;
-import java.util.Collections;
 import java.util.List;
 
 /**

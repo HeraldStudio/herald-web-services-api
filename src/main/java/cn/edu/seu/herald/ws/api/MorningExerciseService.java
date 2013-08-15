@@ -29,7 +29,7 @@ import cn.edu.seu.herald.ws.api.exercise.RunTimesData;
  * 跑擦服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface MorningExerciseService {
+public interface MorningExerciseService extends ConfigurableService {
 
     /**
      * 根据校历返回剩余跑操次数

@@ -29,7 +29,7 @@ import cn.edu.seu.herald.ws.api.gpa.GradePoint;
  * 绩点服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface GradePointService {
+public interface GradePointService extends ConfigurableService {
 
     GradePoint getGradePoint(String username, String password);
 }

@@ -29,7 +29,7 @@ import cn.edu.seu.herald.ws.api.update.Update;
  * 安卓更新服务接口
  * @author rAy <predator.ray@gmail.com>
  */
-public interface AndroidClientUpdateService {
+public interface AndroidClientUpdateService extends ConfigurableService {
 
     /**
      * 获取最近版本的更新信息

@@ -1,4 +1,4 @@
-package cn.edu.seu.herald.ws.api.impl;
+package cn.edu.seu.herald.ws.api;
 
 /**
  * 可配置的服务接口

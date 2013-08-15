@@ -24,6 +24,7 @@
 package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.AuthenticationException;
+import cn.edu.seu.herald.ws.api.ConfigurableService;
 import cn.edu.seu.herald.ws.api.ServiceException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
