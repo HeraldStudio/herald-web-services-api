@@ -43,8 +43,9 @@ public interface MorningExerciseService {
      * @param username 体育系用户名
      * @param password 体育系密码
      * @return 跑操信息
-     * @throws ServiceException
+     * @throws AuthenticationException 认证失败
+     * @throws ServiceException 服务器异常
      */
     RunTimesData getRunTimesData(String username, String password)
-            throws ServiceException;
+            throws AuthenticationException, ServiceException;
 }

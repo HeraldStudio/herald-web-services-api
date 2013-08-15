@@ -36,7 +36,7 @@ public interface LibraryService {
      * @param username 图书馆账户用户名
      * @param password 图书馆账户密码
      * @return 当验证成功时，返回登录的用户；当验证失败，则返回空
-     * @throws ServiceException
+     * @throws ServiceException 服务异常
      * @see cn.edu.seu.herald.ws.api.library.User
      */
     User logIn(String username, String password) throws ServiceException;

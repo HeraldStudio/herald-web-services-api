@@ -1,5 +1,6 @@
 package cn.edu.seu.herald.ws.api.impl;
 
+import cn.edu.seu.herald.ws.api.AuthenticationException;
 import cn.edu.seu.herald.ws.api.MorningExerciseService;
 import cn.edu.seu.herald.ws.api.ServiceException;
 import cn.edu.seu.herald.ws.api.exercise.RunTimesData;
@@ -40,11 +41,12 @@ class MorningExerciseServiceImpl extends AbstractXmlService
 
     @Override
     public RunTimesData getRunTimesData(String username, String password)
-            throws ServiceException {
+            throws AuthenticationException, ServiceException {
         UriBuilder builder = UriBuilder.fromPath(baseResourceUri + RUNTIME_PATH)
                 .queryParam("username", username)
                 .queryParam("password", password);
         URI uri = builder.build();
-        return getJaxbObjectByResource(uri, RunTimesData.class);
+        return getJaxbObjectByResourceWithAuthentication(uri,
+                RunTimesData.class);
     }
 }

@@ -23,6 +23,7 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
+import cn.edu.seu.herald.ws.api.AuthenticationException;
 import cn.edu.seu.herald.ws.api.ServiceException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -67,6 +68,24 @@ abstract class AbstractXmlService {
      *
      * @param <T> Jaxb类
      * @param uri 资源的URI
+     * @param clz Jaxb类
+     * @return 资源对应的Jaxb对象，如果资源没有变动（304，Not-Modified）则返回空
+     * @throws ServiceException 与服务交流异常
+     */
+    protected <T> T getJaxbObjectByResourceWithAuthentication(URI uri,
+                                                              Class<T> clz)
+            throws AuthenticationException, ServiceException {
+        WebResource resource = client.resource(uri);
+        ClientResponse response = resource
+                .accept(MediaType.APPLICATION_XML_TYPE)
+                .get(ClientResponse.class);
+        return handleResponseWithAuthentication(response, clz);
+    }
+
+    /**
+     *
+     * @param <T> Jaxb类
+     * @param uri 资源的URI
      * @param clientUUID 当前资源持有的资源的UUID
      * @param clz Jaxb类
      * @return 资源对应的Jaxb对象，如果资源没有变动（304，Not-Modified）则返回空
@@ -89,8 +108,24 @@ abstract class AbstractXmlService {
             switch (status) {
                 case 200:
                     return response.getEntity(clz);
-                case 304:
-                    return null;
+                default:
+                    throw new UnexpectedStatusException(status);
+            }
+        } catch (Exception ex) {
+            throw new ServiceException(ex);
+        }
+    }
+
+    private <T> T handleResponseWithAuthentication(ClientResponse response,
+                                                   Class<T> clz)
+            throws AuthenticationException, ServiceException {
+        try {
+            int status = response.getStatus();
+            switch (status) {
+                case 200:
+                    return response.getEntity(clz);
+                case 401:
+                    throw new AuthenticationException();
                 default:
                     throw new UnexpectedStatusException(status);
             }
