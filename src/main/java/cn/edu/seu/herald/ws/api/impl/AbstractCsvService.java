@@ -36,12 +36,19 @@ import java.util.List;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-abstract class AbstractCsvService {
+abstract class AbstractCsvService implements ConfigurableService {
 
+    private static final int DEFAULT_TIMEOUT = 5000;
     private Client client;
 
     AbstractCsvService() {
         client = Client.create();
+        client.setConnectTimeout(DEFAULT_TIMEOUT);
+    }
+
+    @Override
+    public void setConnectionTimeout(int timeout) {
+        client.setConnectTimeout(timeout);
     }
 
     protected List<String[]> getCsvByResouse(URI uri) {

@@ -35,12 +35,19 @@ import javax.ws.rs.core.MediaType;
  *
  * @author rAy <predator.ray@gmail.com>
  */
-abstract class AbstractXmlService {
+abstract class AbstractXmlService implements ConfigurableService {
 
+    private static final int DEFAULT_TIMEOUT = 5000;
     private Client client;
 
     AbstractXmlService() {
         client = Client.create();
+        client.setConnectTimeout(DEFAULT_TIMEOUT);
+    }
+
+    @Override
+    public void setConnectionTimeout(int timeout) {
+        client.setConnectTimeout(timeout);
     }
 
     protected WebResource getWebResource(URI uri) {
