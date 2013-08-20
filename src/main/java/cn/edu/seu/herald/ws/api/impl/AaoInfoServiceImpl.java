@@ -35,24 +35,24 @@ import org.apache.wink.common.model.rss.RssFeed;
 class AaoInfoServiceImpl extends AbstractXmlService
         implements AaoInfoService {
 
-    private static final String AAO_URL = "/campus/aao";
+    private static final String AAO_URL = "/campus/{name}";
     private String baseResourceUri;
 
     public AaoInfoServiceImpl(String baseResourceUri) {
         this.baseResourceUri = baseResourceUri;
     }
 
-    public RssFeed getAaoRssFeed(int limit) {
+    public RssFeed getAaoRssFeed(String name, int limit) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
                 .path(AAO_URL).queryParam("limit", limit);
-        URI uri = builder.build();
+        URI uri = builder.build(name);
         return getJaxbObjectByResource(uri, RssFeed.class);
     }
 
-    public RssFeed getAaoRssFeed(String uuid, int limit) {
+    public RssFeed getAaoRssFeed(String name, String uuid, int limit) {
         UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
                 .path(AAO_URL).queryParam("limit", limit);
-        URI uri = builder.build();
+        URI uri = builder.build(name);
         return getJaxbObjectByResource(uri, uuid, RssFeed.class);
     }
 }
