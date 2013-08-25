@@ -49,10 +49,21 @@ class AaoInfoServiceImpl extends AbstractXmlService
         return getJaxbObjectByResource(uri, RssFeed.class);
     }
 
-    public RssFeed getAaoRssFeed(String name, String uuid, int limit) {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
-                .path(AAO_URL).queryParam("limit", limit);
+    @Override
+    public RssFeed getAaoRssFeedBefore(String name, String uuid, int limit) {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri) .path(AAO_URL)
+                .queryParam("limit", limit)
+                .queryParam("before", uuid);
         URI uri = builder.build(name);
-        return getJaxbObjectByResource(uri, uuid, RssFeed.class);
+        return getJaxbObjectByResource(uri, RssFeed.class);
+    }
+
+    @Override
+    public RssFeed getAaoRssFeedAfter(String name, String uuid, int limit) {
+        UriBuilder builder = UriBuilder.fromUri(baseResourceUri).path(AAO_URL)
+                .queryParam("limit", limit)
+                .queryParam("after", uuid);
+        URI uri = builder.build(name);
+        return getJaxbObjectByResource(uri, RssFeed.class);
     }
 }
