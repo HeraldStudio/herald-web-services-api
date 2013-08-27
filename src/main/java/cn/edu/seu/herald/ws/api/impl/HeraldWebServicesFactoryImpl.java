@@ -24,12 +24,17 @@
 package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.*;
+import com.sun.jersey.spi.service.ServiceFinder;
 
 /**
  * 先声网Web服务抽象工厂的实现类，返回各产品的具体实现。
  * @author rAy <predator.ray@gmail.com>
  */
 public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
+
+    static {
+        ServiceFinder.setIteratorProvider(new AndroidServiceIteratorProvider());
+    }
 
     private final String baseResourceUri;
 
