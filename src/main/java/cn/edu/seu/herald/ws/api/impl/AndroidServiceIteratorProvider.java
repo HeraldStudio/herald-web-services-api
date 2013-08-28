@@ -34,8 +34,10 @@ public class AndroidServiceIteratorProvider<T>
     private static final String[]
             COM_SUN_JERSEY_SPI_INJECT_INJECTABLE_PROVIDER = {
             "com.sun.jersey.core.impl.provider.xml.SAXParserContextProvider",
-            "com.sun.jersey.core.impl.provider.xml.XMLStreamReaderContextProvider",
-            "com.sun.jersey.core.impl.provider.xml.DocumentBuilderFactoryProvider",
+            "com.sun.jersey.core.impl.provider.xml." +
+                    "XMLStreamReaderContextProvider",
+            "com.sun.jersey.core.impl.provider.xml." +
+                    "DocumentBuilderFactoryProvider",
             "com.sun.jersey.core.impl.provider.xml.TransformerFactoryProvider"
     };
 
@@ -48,24 +50,40 @@ public class AndroidServiceIteratorProvider<T>
             "com.sun.jersey.core.impl.provider.entity.RenderedImageProvider",
             "com.sun.jersey.core.impl.provider.entity.MimeMultipartProvider",
             "com.sun.jersey.core.impl.provider.entity.FormProvider",
-            "com.sun.jersey.core.impl.provider.entity.FormMultivaluedMapProvider",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootElementProvider$App",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootElementProvider$Text",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootElementProvider$General",
-            "com.sun.jersey.core.impl.provider.entity.XMLJAXBElementProvider$App",
-            "com.sun.jersey.core.impl.provider.entity.XMLJAXBElementProvider$Text",
-            "com.sun.jersey.core.impl.provider.entity.XMLJAXBElementProvider$General",
-            "com.sun.jersey.core.impl.provider.entity.XMLListElementProvider$App",
-            "com.sun.jersey.core.impl.provider.entity.XMLListElementProvider$Text",
-            "com.sun.jersey.core.impl.provider.entity.XMLListElementProvider$General",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "FormMultivaluedMapProvider",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootElementProvider$App",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootElementProvider$Text",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootElementProvider$General",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLJAXBElementProvider$App",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLJAXBElementProvider$Text",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLJAXBElementProvider$General",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLListElementProvider$App",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLListElementProvider$Text",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLListElementProvider$General",
             "com.sun.jersey.core.impl.provider.entity.ReaderProvider",
             "com.sun.jersey.core.impl.provider.entity.DocumentProvider",
-            "com.sun.jersey.core.impl.provider.entity.SourceProvider$StreamSourceReader",
-            "com.sun.jersey.core.impl.provider.entity.SourceProvider$SAXSourceReader",
-            "com.sun.jersey.core.impl.provider.entity.SourceProvider$DOMSourceReader",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootObjectProvider$App",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootObjectProvider$Text",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootObjectProvider$General",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "SourceProvider$StreamSourceReader",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "SourceProvider$SAXSourceReader",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "SourceProvider$DOMSourceReader",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootObjectProvider$App",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootObjectProvider$Text",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootObjectProvider$General",
             "com.sun.jersey.core.impl.provider.entity.EntityHolderReader"
     };
 
@@ -78,20 +96,31 @@ public class AndroidServiceIteratorProvider<T>
             "com.sun.jersey.core.impl.provider.entity.RenderedImageProvider",
             "com.sun.jersey.core.impl.provider.entity.MimeMultipartProvider",
             "com.sun.jersey.core.impl.provider.entity.FormProvider",
-            "com.sun.jersey.core.impl.provider.entity.FormMultivaluedMapProvider",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootElementProvider$App",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootElementProvider$Text",
-            "com.sun.jersey.core.impl.provider.entity.XMLRootElementProvider$General",
-            "com.sun.jersey.core.impl.provider.entity.XMLJAXBElementProvider$App",
-            "com.sun.jersey.core.impl.provider.entity.XMLJAXBElementProvider$Text",
-            "com.sun.jersey.core.impl.provider.entity.XMLJAXBElementProvider$General",
-            "com.sun.jersey.core.impl.provider.entity.XMLListElementProvider$App",
-            "com.sun.jersey.core.impl.provider.entity.XMLListElementProvider$Text",
-            "com.sun.jersey.core.impl.provider.entity.XMLListElementProvider$General",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "FormMultivaluedMapProvider",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootElementProvider$App",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootElementProvider$Text",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLRootElementProvider$General",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLJAXBElementProvider$App",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLJAXBElementProvider$Text",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLJAXBElementProvider$General",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLListElementProvider$App",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLListElementProvider$Text",
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "XMLListElementProvider$General",
             "com.sun.jersey.core.impl.provider.entity.ReaderProvider",
             "com.sun.jersey.core.impl.provider.entity.DocumentProvider",
             "com.sun.jersey.core.impl.provider.entity.StreamingOutputProvider",
-            "com.sun.jersey.core.impl.provider.entity.SourceProvider$SourceWriter"
+            "com.sun.jersey.core.impl.provider.entity." +
+                    "SourceProvider$SourceWriter"
     };
 
     static {
