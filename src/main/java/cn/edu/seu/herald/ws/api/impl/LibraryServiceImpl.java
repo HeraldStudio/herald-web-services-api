@@ -84,19 +84,19 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     }
 
     private Booklist getBooklistByHref(String href) throws ServiceException {
-        return getJaxbObjectByResource(URI.create(href), Booklist.class);
+        return getJaxbObjectByResource(toAbsoluteURI(href), Booklist.class);
     }
 
     @Override
     public Book getBookDetails(Book book) throws ServiceException {
         String href = book.getHref();
-        return getJaxbObjectByResource(URI.create(href), Book.class);
+        return getJaxbObjectByResource(toAbsoluteURI(href), Book.class);
     }
 
     @Override
     public void renew(Book book) throws ServiceException {
         String href = book.getRenewal().getHref();
-        ClientResponse response = getWebResource(URI.create(href))
+        ClientResponse response = getWebResource(toAbsoluteURI(href))
                 .post(ClientResponse.class);
         int status = response.getStatus();
         if (status == 204) {
@@ -109,7 +109,7 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     public void makeReservation(ReservationType reservation)
             throws ServiceException {
         String href = reservation.getHref();
-        ClientResponse response = getWebResource(URI.create(href))
+        ClientResponse response = getWebResource(toAbsoluteURI(href))
                 .post(ClientResponse.class);
         int status = response.getStatus();
         if (status == 204) {
@@ -122,12 +122,18 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     public void cancelReservation(ReservationType reservation)
             throws ServiceException {
         String href = reservation.getHref();
-        ClientResponse response = getWebResource(URI.create(href))
+        ClientResponse response = getWebResource(toAbsoluteURI(href))
                 .delete(ClientResponse.class);
         int status = response.getStatus();
         if (status == 204) {
             return;
         }
         throw new UnexpectedStatusException(status);
+    }
+
+    private URI toAbsoluteURI(String relativeHref) {
+        String absoluteHref = String.format("%s/%s", baseResourceUri,
+                relativeHref);
+        return URI.create(absoluteHref);
     }
 }
