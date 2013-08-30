@@ -137,7 +137,7 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     }
 
     private URI toAbsoluteURI(String relativeHref) {
-        String absoluteHref = String.format("%s/%s", baseResourceUri,
+        String absoluteHref = String.format("%s%s", baseResourceUri,
                 relativeHref);
         return URI.create(absoluteHref);
     }
