@@ -32,6 +32,8 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Copyright (c) 2013 Ray <predator.ray@gmail.com>
@@ -63,9 +65,20 @@ class MorningExerciseServiceImpl extends AbstractXmlService
             URI uri = builder.build();
             GetMethod getMethod = requestGetMethodFactory
                     .newPlainTextRequestMethod(uri);
+            String daysStr = null;
             try {
-                String daysStr = getMethod.getResponseBodyAsString();
+                httpClient.executeMethod(getMethod);
+                int status = getMethod.getStatusCode();
+                if (status != 200) {
+                    throw new UnexpectedStatusException(status);
+                }
+                daysStr = getMethod.getResponseBodyAsString();
                 return Integer.parseInt(daysStr);
+            } catch (NumberFormatException ex) {
+                throw new ServiceException(String.format(
+                        "NumberFormatException occurred " +
+                                "during parsing [ %s ] with uri [ %s ]",
+                        daysStr, getMethod.getURI().toString()), ex);
             } finally {
                 getMethod.releaseConnection();
             }
