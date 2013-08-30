@@ -24,7 +24,7 @@
 package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.*;
-import com.sun.jersey.spi.service.ServiceFinder;
+import org.apache.commons.httpclient.HttpClient;
 
 /**
  * 先声网Web服务抽象工厂的实现类，返回各产品的具体实现。
@@ -32,11 +32,9 @@ import com.sun.jersey.spi.service.ServiceFinder;
  */
 public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
 
-    static {
-        ServiceFinder.setIteratorProvider(new AndroidServiceIteratorProvider());
-    }
-
     private final String baseResourceUri;
+    private final RequestGetMethodFactory requestGetMethodFactory;
+    private final HttpClient httpClient;
 
     /**
      * 构造一个该工程的具体示例，需要传递服务的基础资源URI
@@ -44,6 +42,9 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     public HeraldWebServicesFactoryImpl(String baseResourceUri) {
         this.baseResourceUri = baseResourceUri;
+        this.requestGetMethodFactory = new RequestGetMethodFactoryImpl();
+        ServiceRequesterFactory factory = new ServiceRequesterFactory();
+        this.httpClient = factory.newServiceRequester();
     }
 
     /**
@@ -52,7 +53,8 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public CurriculumService getCurriculumService() {
-        return new CurriculumServiceImpl(baseResourceUri);
+        return new CurriculumServiceImpl(requestGetMethodFactory, httpClient,
+                baseResourceUri);
     }
 
     /**
@@ -61,7 +63,8 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public AaoInfoService getCampusInfoService() {
-        return new AaoInfoServiceImpl(baseResourceUri);
+        return new AaoInfoServiceImpl(requestGetMethodFactory, httpClient,
+                baseResourceUri);
     }
 
     /**
@@ -70,7 +73,8 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public ClassroomService getClassroomService() {
-        return new ClassroomServiceImpl(baseResourceUri);
+        return new ClassroomServiceImpl(requestGetMethodFactory, httpClient,
+                baseResourceUri);
     }
 
     /**
@@ -79,7 +83,8 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public LibraryService getLibraryService() {
-        return new LibraryServiceImpl(baseResourceUri);
+        return new LibraryServiceImpl(requestGetMethodFactory, httpClient,
+                baseResourceUri);
     }
 
     /**
@@ -88,7 +93,8 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public AndroidClientUpdateService getAndroidClientUpdateService() {
-        return new AndroidClientUpdateServiceImpl(baseResourceUri);
+        return new AndroidClientUpdateServiceImpl(requestGetMethodFactory,
+                httpClient, baseResourceUri);
     }
 
     /**
@@ -97,6 +103,7 @@ public class HeraldWebServicesFactoryImpl implements HeraldWebServicesFactory {
      */
     @Override
     public MorningExerciseService getMorningExerciseService() {
-        return new MorningExerciseServiceImpl(baseResourceUri);
+        return new MorningExerciseServiceImpl(requestGetMethodFactory,
+                httpClient, baseResourceUri);
     }
 }

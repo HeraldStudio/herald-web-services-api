@@ -23,35 +23,38 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
-import cn.edu.seu.herald.ws.api.ClassroomService;
-import cn.edu.seu.herald.ws.api.curriculum.Day;
-import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
 
 import java.net.URI;
-import javax.ws.rs.core.UriBuilder;
 
-/**
- * 教室服务的实现类，基于jersey实现的RESTful Web Services的客户端。
- * @author rAy <predator.ray@gmail.com>
- */
-class ClassroomServiceImpl extends AbstractCsvService
-        implements ClassroomService {
+class RequestGetMethodFactoryImpl implements RequestGetMethodFactory {
 
-    private static final String CLASSROOM_UNUSED_PATH = "/classroom/unused";
-    private String baseResourceUri;
+    private static final String HTTP_HEADER_ACCEPT = "Accept";
+    private static final String MEDIA_TYPE_APPLICATION_XML = "application/xml";
+    private static final String MEDIA_TYPE_TEXT_CSV = "text/csv";
+    private static final String MEDIA_TYPE_TEXT_PLAIN = "text/plain";
 
-    public ClassroomServiceImpl(RequestGetMethodFactory requestGetMethodFactory,
-                                HttpClient httpClient, String baseResourceUri) {
-        super(requestGetMethodFactory, httpClient);
-        this.baseResourceUri = baseResourceUri;
+    @Override
+    public  GetMethod newXmlRequestGetMethod(URI uri) {
+        GetMethod getMethod = new GetMethod(uri.toASCIIString());
+        getMethod.setRequestHeader(HTTP_HEADER_ACCEPT,
+                MEDIA_TYPE_APPLICATION_XML);
+        return getMethod;
     }
 
-    public String[] getClassroomUnused(Day day, int from, int to) {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
-                .path(CLASSROOM_UNUSED_PATH)
-                .queryParam("day", day)
-                .queryParam("from", from).queryParam("to", to);
-        URI uri = builder.build(day);
-        return getCsvByResouse(uri);
+    @Override
+    public GetMethod newCsvRequestGetMethod(URI uri) {
+        GetMethod getMethod = new GetMethod(uri.toASCIIString());
+        getMethod.setRequestHeader(HTTP_HEADER_ACCEPT,
+                MEDIA_TYPE_TEXT_CSV);
+        return getMethod;
+    }
+
+    @Override
+    public GetMethod newPlainTextRequestMethod(URI uri) {
+        GetMethod getMethod = new GetMethod(uri.toASCIIString());
+        getMethod.setRequestHeader(HTTP_HEADER_ACCEPT,
+                MEDIA_TYPE_TEXT_PLAIN);
+        return getMethod;
     }
 }

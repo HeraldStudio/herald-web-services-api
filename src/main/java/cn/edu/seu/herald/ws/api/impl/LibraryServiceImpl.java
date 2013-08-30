@@ -25,8 +25,11 @@ package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.LibraryService;
 import cn.edu.seu.herald.ws.api.ServiceException;
-import cn.edu.seu.herald.ws.api.library.*;
-import com.sun.jersey.api.client.ClientResponse;
+import cn.edu.seu.herald.ws.api.library.Book;
+import cn.edu.seu.herald.ws.api.library.Booklist;
+import cn.edu.seu.herald.ws.api.library.ReservationType;
+import cn.edu.seu.herald.ws.api.library.User;
+import org.apache.commons.httpclient.HttpClient;
 
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
@@ -40,10 +43,12 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
     private static final String LOG_IN_TEMPLATE =
             LIBRARY_URI + "/user";
     private static final String SEARCH_TEMPLATE =
-            LIBRARY_URI + "/search";
+            LIBRARY_URI + "/books";
     private String baseResourceUri;
 
-    public LibraryServiceImpl(String baseResourceUri) {
+    public LibraryServiceImpl(RequestGetMethodFactory requestGetMethodFactory,
+                              HttpClient httpClient, String baseResourceUri) {
+        super(requestGetMethodFactory, httpClient);
         this.baseResourceUri = baseResourceUri;
     }
 
@@ -95,40 +100,40 @@ class LibraryServiceImpl extends AbstractXmlService implements LibraryService {
 
     @Override
     public void renew(Book book) throws ServiceException {
-        String href = book.getRenewal().getHref();
-        ClientResponse response = getWebResource(toAbsoluteURI(href))
-                .post(ClientResponse.class);
-        int status = response.getStatus();
-        if (status == 204) {
-            return;
-        }
-        throw new UnexpectedStatusException(status);
+//        String href = book.getRenewal().getHref();
+//        ClientResponse response = getWebResource(toAbsoluteURI(href))
+//                .post(ClientResponse.class);
+//        int status = response.getStatus();
+//        if (status == 204) {
+//            return;
+//        }
+//        throw new UnexpectedStatusException(status);
     }
 
     @Override
     public void makeReservation(ReservationType reservation)
             throws ServiceException {
-        String href = reservation.getHref();
-        ClientResponse response = getWebResource(toAbsoluteURI(href))
-                .post(ClientResponse.class);
-        int status = response.getStatus();
-        if (status == 204) {
-            return;
-        }
-        throw new UnexpectedStatusException(status);
+//        String href = reservation.getHref();
+//        ClientResponse response = getWebResource(toAbsoluteURI(href))
+//                .post(ClientResponse.class);
+//        int status = response.getStatus();
+//        if (status == 204) {
+//            return;
+//        }
+//        throw new UnexpectedStatusException(status);
     }
 
     @Override
     public void cancelReservation(ReservationType reservation)
             throws ServiceException {
-        String href = reservation.getHref();
-        ClientResponse response = getWebResource(toAbsoluteURI(href))
-                .delete(ClientResponse.class);
-        int status = response.getStatus();
-        if (status == 204) {
-            return;
-        }
-        throw new UnexpectedStatusException(status);
+//        String href = reservation.getHref();
+//        ClientResponse response = getWebResource(toAbsoluteURI(href))
+//                .delete(ClientResponse.class);
+//        int status = response.getStatus();
+//        if (status == 204) {
+//            return;
+//        }
+//        throw new UnexpectedStatusException(status);
     }
 
     private URI toAbsoluteURI(String relativeHref) {

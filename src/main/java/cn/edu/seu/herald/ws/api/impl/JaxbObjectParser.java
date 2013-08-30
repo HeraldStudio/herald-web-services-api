@@ -23,35 +23,18 @@
  */
 package cn.edu.seu.herald.ws.api.impl;
 
-import cn.edu.seu.herald.ws.api.ClassroomService;
-import cn.edu.seu.herald.ws.api.curriculum.Day;
-import org.apache.commons.httpclient.HttpClient;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.InputStream;
 
-import java.net.URI;
-import javax.ws.rs.core.UriBuilder;
+class JaxbObjectParser {
 
-/**
- * 教室服务的实现类，基于jersey实现的RESTful Web Services的客户端。
- * @author rAy <predator.ray@gmail.com>
- */
-class ClassroomServiceImpl extends AbstractCsvService
-        implements ClassroomService {
-
-    private static final String CLASSROOM_UNUSED_PATH = "/classroom/unused";
-    private String baseResourceUri;
-
-    public ClassroomServiceImpl(RequestGetMethodFactory requestGetMethodFactory,
-                                HttpClient httpClient, String baseResourceUri) {
-        super(requestGetMethodFactory, httpClient);
-        this.baseResourceUri = baseResourceUri;
-    }
-
-    public String[] getClassroomUnused(Day day, int from, int to) {
-        UriBuilder builder = UriBuilder.fromUri(baseResourceUri)
-                .path(CLASSROOM_UNUSED_PATH)
-                .queryParam("day", day)
-                .queryParam("from", from).queryParam("to", to);
-        URI uri = builder.build(day);
-        return getCsvByResouse(uri);
+    public <T> T unmarshall(InputStream xmlStream,
+                                         Class<T> jaxbClass)
+            throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(jaxbClass);
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        return (T) jaxbUnmarshaller.unmarshal(xmlStream);
     }
 }

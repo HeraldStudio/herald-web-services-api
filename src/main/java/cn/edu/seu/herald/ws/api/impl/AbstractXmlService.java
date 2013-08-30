@@ -26,11 +26,13 @@ package cn.edu.seu.herald.ws.api.impl;
 import cn.edu.seu.herald.ws.api.AuthenticationException;
 import cn.edu.seu.herald.ws.api.ConfigurableService;
 import cn.edu.seu.herald.ws.api.ServiceException;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.params.HttpConnectionParams;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
-import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -39,20 +41,21 @@ import javax.ws.rs.core.MediaType;
 abstract class AbstractXmlService implements ConfigurableService {
 
     private static final int DEFAULT_TIMEOUT = 5000;
-    private Client client;
+    private HttpClient httpClient;
+    private JaxbObjectParser jaxbObjectParser = new JaxbObjectParser();
+    private final RequestGetMethodFactory requestGetMethodFactory;
 
-    AbstractXmlService() {
-        client = Client.create();
-        client.setConnectTimeout(DEFAULT_TIMEOUT);
+    AbstractXmlService(RequestGetMethodFactory requestGetMethodFactory,
+                       HttpClient httpClient) {
+        this.requestGetMethodFactory = requestGetMethodFactory;
+        this.httpClient = httpClient;
+        setConnectionTimeout(DEFAULT_TIMEOUT);
     }
 
     @Override
     public void setConnectionTimeout(int timeout) {
-        client.setConnectTimeout(timeout);
-    }
-
-    protected WebResource getWebResource(URI uri) {
-        return client.resource(uri);
+        httpClient.getParams().setParameter(
+                HttpConnectionParams.CONNECTION_TIMEOUT, timeout);
     }
 
     /**
@@ -60,16 +63,26 @@ abstract class AbstractXmlService implements ConfigurableService {
      * @param <T> Jaxb类
      * @param uri 资源的URI
      * @param clz Jaxb类
-     * @return 资源对应的Jaxb对象，如果资源没有变动（304，Not-Modified）则返回空
+     * @return 资源对应的Jaxb对象
      * @throws ServiceException 与服务交流异常
      */
     protected <T> T getJaxbObjectByResource(URI uri, Class<T> clz)
             throws ServiceException {
-        WebResource resource = client.resource(uri);
-        ClientResponse response = resource
-                .accept(MediaType.APPLICATION_XML_TYPE)
-                .get(ClientResponse.class);
-        return handleResponse(response, clz);
+        GetMethod getMethod = requestGetMethodFactory
+                .newXmlRequestGetMethod(uri);
+        try {
+            int status = httpClient.executeMethod(getMethod);
+            InputStream responseStream = getMethod.getResponseBodyAsStream();
+            try {
+                return handleResponse(status, responseStream, clz);
+            } finally {
+                responseStream.close();
+            }
+        } catch (IOException ex) {
+            throw new ServiceException(ex);
+        } finally {
+            getMethod.releaseConnection();
+        }
     }
 
     /**
@@ -77,45 +90,36 @@ abstract class AbstractXmlService implements ConfigurableService {
      * @param <T> Jaxb类
      * @param uri 资源的URI
      * @param clz Jaxb类
-     * @return 资源对应的Jaxb对象，如果资源没有变动（304，Not-Modified）则返回空
+     * @return 资源对应的Jaxb对象
      * @throws ServiceException 与服务交流异常
      */
     protected <T> T getJaxbObjectByResourceWithAuthentication(URI uri,
                                                               Class<T> clz)
             throws AuthenticationException, ServiceException {
-        WebResource resource = client.resource(uri);
-        ClientResponse response = resource
-                .accept(MediaType.APPLICATION_XML_TYPE)
-                .get(ClientResponse.class);
-        return handleResponseWithAuthentication(response, clz);
+        GetMethod getMethod = requestGetMethodFactory
+                .newXmlRequestGetMethod(uri);
+        try {
+            int status = httpClient.executeMethod(getMethod);
+            InputStream responseStream = getMethod.getResponseBodyAsStream();
+            try {
+                return handleResponseWithAuthentication(status, responseStream, clz);
+            } finally {
+                responseStream.close();
+            }
+        } catch (IOException ex) {
+            throw new ServiceException(ex);
+        } finally {
+            getMethod.releaseConnection();
+        }
     }
 
-    /**
-     *
-     * @param <T> Jaxb类
-     * @param uri 资源的URI
-     * @param clientUUID 当前资源持有的资源的UUID
-     * @param clz Jaxb类
-     * @return 资源对应的Jaxb对象，如果资源没有变动（304，Not-Modified）则返回空
-     * @throws ServiceException 与服务交流异常
-     */
-    protected <T> T getJaxbObjectByResource(URI uri, String clientUUID,
-            Class<T> clz) throws ServiceException {
-        WebResource resource = client.resource(uri);
-        ClientResponse response = resource
-                .accept(MediaType.APPLICATION_XML_TYPE)
-                .header("If-None-Match", clientUUID)
-                .get(ClientResponse.class);
-        return handleResponse(response, clz);
-    }
-
-    private <T> T handleResponse(ClientResponse response, Class<T> clz)
+    private <T> T handleResponse(int status, InputStream responseStream,
+                                 Class<T> clz)
             throws ServiceException {
         try {
-            int status = response.getStatus();
             switch (status) {
                 case 200:
-                    return response.getEntity(clz);
+                    return jaxbObjectParser.unmarshall(responseStream, clz);
                 default:
                     throw new UnexpectedStatusException(status);
             }
@@ -124,14 +128,14 @@ abstract class AbstractXmlService implements ConfigurableService {
         }
     }
 
-    private <T> T handleResponseWithAuthentication(ClientResponse response,
+    private <T> T handleResponseWithAuthentication(int status,
+                                                   InputStream responseStream,
                                                    Class<T> clz)
             throws AuthenticationException, ServiceException {
         try {
-            int status = response.getStatus();
             switch (status) {
                 case 200:
-                    return response.getEntity(clz);
+                    return jaxbObjectParser.unmarshall(responseStream, clz);
                 case 401:
                     throw new AuthenticationException();
                 default:

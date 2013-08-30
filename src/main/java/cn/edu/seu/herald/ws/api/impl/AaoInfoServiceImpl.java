@@ -26,6 +26,8 @@ package cn.edu.seu.herald.ws.api.impl;
 import cn.edu.seu.herald.ws.api.AaoInfoService;
 import java.net.URI;
 import javax.ws.rs.core.UriBuilder;
+
+import org.apache.commons.httpclient.HttpClient;
 import org.apache.wink.common.model.rss.RssFeed;
 
 /**
@@ -38,7 +40,9 @@ class AaoInfoServiceImpl extends AbstractXmlService
     private static final String AAO_URL = "/campus/{name}";
     private String baseResourceUri;
 
-    public AaoInfoServiceImpl(String baseResourceUri) {
+    public AaoInfoServiceImpl(RequestGetMethodFactory requestGetMethodFactory,
+                              HttpClient httpClient, String baseResourceUri) {
+        super(requestGetMethodFactory, httpClient);
         this.baseResourceUri = baseResourceUri;
     }
 

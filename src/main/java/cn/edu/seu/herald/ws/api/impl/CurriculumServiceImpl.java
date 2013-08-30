@@ -31,6 +31,8 @@ import cn.edu.seu.herald.ws.api.curriculum.Period;
 import cn.edu.seu.herald.ws.api.curriculum.Schedule;
 import cn.edu.seu.herald.ws.api.ServiceException;
 import cn.edu.seu.herald.ws.api.curriculum.TimeTable;
+import org.apache.commons.httpclient.HttpClient;
+
 import java.net.URI;
 import java.util.Calendar;
 import java.util.Collections;
@@ -49,7 +51,10 @@ class CurriculumServiceImpl extends AbstractXmlService
     private static final String CURR_TMPLT = "/curriculum";
     private final String baseResourceUri;
 
-    public CurriculumServiceImpl(String baseResourceUri) {
+    public CurriculumServiceImpl(
+            RequestGetMethodFactory requestGetMethodFactory,
+            HttpClient httpClient, String baseResourceUri) {
+        super(requestGetMethodFactory, httpClient);
         this.baseResourceUri = baseResourceUri;
     }
 

@@ -25,12 +25,11 @@ package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.ConfigurableService;
 import cn.edu.seu.herald.ws.api.ServiceException;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
-import org.apache.wink.common.model.csv.CsvTable;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.params.HttpConnectionParams;
 
 import java.net.URI;
-import java.util.List;
 
 /**
  *
@@ -39,25 +38,32 @@ import java.util.List;
 abstract class AbstractCsvService implements ConfigurableService {
 
     private static final int DEFAULT_TIMEOUT = 5000;
-    private Client client;
+    private final RequestGetMethodFactory requestGetMethodFactory;
+    private final HttpClient httpClient;
 
-    AbstractCsvService() {
-        client = Client.create();
-        client.setConnectTimeout(DEFAULT_TIMEOUT);
+    AbstractCsvService(RequestGetMethodFactory requestGetMethodFactory,
+                       HttpClient httpClient) {
+        this.requestGetMethodFactory = requestGetMethodFactory;
+        this.httpClient = httpClient;
+        setConnectionTimeout(DEFAULT_TIMEOUT);
     }
 
     @Override
     public void setConnectionTimeout(int timeout) {
-        client.setConnectTimeout(timeout);
+        httpClient.getParams().setParameter(
+                HttpConnectionParams.CONNECTION_TIMEOUT, timeout);
     }
 
-    protected List<String[]> getCsvByResouse(URI uri) {
+    protected String[] getCsvByResouse(URI uri) {
+        GetMethod getMethod = requestGetMethodFactory
+                .newCsvRequestGetMethod(uri);
         try {
-            WebResource resource = client.resource(uri);
-            CsvTable csv = resource.accept("text/csv").get(CsvTable.class);
-            return csv.getRows();
+            String csv = getMethod.getResponseBodyAsString();
+            return csv.split(",");
         } catch (Exception ex) {
             throw new ServiceException(ex);
+        } finally {
+            getMethod.releaseConnection();
         }
     }
 }
