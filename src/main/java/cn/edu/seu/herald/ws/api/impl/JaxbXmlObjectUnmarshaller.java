@@ -28,13 +28,17 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.InputStream;
 
-class JaxbObjectParser {
+class JaxbXmlObjectUnmarshaller implements XmlObjectUnmarshaller {
 
-    public <T> T unmarshall(InputStream xmlStream,
-                                         Class<T> jaxbClass)
-            throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(jaxbClass);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        return (T) jaxbUnmarshaller.unmarshal(xmlStream);
+    public <T> T unmarshal(InputStream xmlStream,
+                           Class<T> jaxbClass)
+            throws UnmarshallerException {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(jaxbClass);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            return (T) jaxbUnmarshaller.unmarshal(xmlStream);
+        } catch (Exception ex) {
+            throw new UnmarshallerException(ex);
+        }
     }
 }

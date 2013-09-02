@@ -42,7 +42,8 @@ abstract class AbstractXmlService implements ConfigurableService {
 
     private static final int DEFAULT_TIMEOUT = 5000;
     private HttpClient httpClient;
-    private JaxbObjectParser jaxbObjectParser = new JaxbObjectParser();
+    private XmlObjectUnmarshaller xmlObjectUnmarshaller =
+            new Dom4jXmlObjectUnmarshaller();
     private final RequestGetMethodFactory requestGetMethodFactory;
 
     AbstractXmlService(RequestGetMethodFactory requestGetMethodFactory,
@@ -119,7 +120,7 @@ abstract class AbstractXmlService implements ConfigurableService {
         try {
             switch (status) {
                 case 200:
-                    return jaxbObjectParser.unmarshall(responseStream, clz);
+                    return xmlObjectUnmarshaller.unmarshal(responseStream, clz);
                 default:
                     throw new UnexpectedStatusException(status);
             }
@@ -135,7 +136,7 @@ abstract class AbstractXmlService implements ConfigurableService {
         try {
             switch (status) {
                 case 200:
-                    return jaxbObjectParser.unmarshall(responseStream, clz);
+                    return xmlObjectUnmarshaller.unmarshal(responseStream, clz);
                 case 401:
                     throw new AuthenticationException();
                 default:
