@@ -13,15 +13,14 @@ import java.util.List;
 
 public class CurriculumUnmarshaller extends AbstractUnmarshaller<Curriculum> {
 
-    private SAXReaderFactory saxReaderFactory = new SAXReaderFactory();
-
     @Override
     public Curriculum unmarshall(InputStream xmlStream)
             throws UnmarshallerException {
-        SAXReader reader = saxReaderFactory.newSAXReader();
+        SAXReader reader = newSAXReader();
         try {
             Document document = reader.read(xmlStream);
-            String term = selectSingleNodeText(document, "/curriculum/@term");
+            String term = selectSingleNodeText(document,
+                    "/curr:curriculum/@term");
             String cardNumber = selectSingleNodeText(document,
                     "/curr:curriculum/@cardNumber");
 

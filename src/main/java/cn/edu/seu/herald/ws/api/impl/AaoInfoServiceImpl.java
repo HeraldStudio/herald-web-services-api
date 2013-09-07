@@ -24,11 +24,11 @@
 package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.AaoInfoService;
-import java.net.URI;
-import javax.ws.rs.core.UriBuilder;
-
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.wink.common.model.rss.RssFeed;
+
+import javax.ws.rs.core.UriBuilder;
+import java.net.URI;
 
 /**
  *

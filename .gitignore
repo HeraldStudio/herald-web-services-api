@@ -5,4 +5,8 @@
 *.war
 *.ear
 
+# IDEA Project Files #
+.iml
+/.idea/
+
 /target/

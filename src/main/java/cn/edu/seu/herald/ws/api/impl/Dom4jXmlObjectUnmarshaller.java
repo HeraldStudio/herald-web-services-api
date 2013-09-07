@@ -1,9 +1,11 @@
 package cn.edu.seu.herald.ws.api.impl;
 
 import cn.edu.seu.herald.ws.api.curriculum.Curriculum;
-import cn.edu.seu.herald.ws.api.impl.parser.CurriculumUnmarshaller;
-import cn.edu.seu.herald.ws.api.impl.parser.Unmarshaller;
+import cn.edu.seu.herald.ws.api.impl.parser.*;
+import cn.edu.seu.herald.ws.api.library.Book;
+import cn.edu.seu.herald.ws.api.library.Booklist;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +16,9 @@ public class Dom4jXmlObjectUnmarshaller implements XmlObjectUnmarshaller {
             new HashMap<Class<?>, Unmarshaller<?>>();
     static {
         unmarshallerMap.put(Curriculum.class, new CurriculumUnmarshaller());
+        unmarshallerMap.put(Runtime.class, new ExerciseUnmarshaller());
+        unmarshallerMap.put(Booklist.class, new BooklistUnmarshaller());
+        unmarshallerMap.put(Book.class, new BookUnmarshaller());
     }
 
     @Override
@@ -24,6 +29,21 @@ public class Dom4jXmlObjectUnmarshaller implements XmlObjectUnmarshaller {
             throw new UnmarshallerException(String.format(
                     "Unmarshaller<%s> is not found.", jaxbClass.getName()));
         }
-        return (T) unmarshaller.unmarshall(xmlStream);
+        try {
+            return (T) unmarshaller.unmarshall(xmlStream);
+        } finally {
+            safeCloseInputStream(xmlStream);
+        }
+    }
+
+    private void safeCloseInputStream(InputStream inputStream)
+            throws UnmarshallerException {
+        try {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        } catch (IOException ex) {
+            throw new UnmarshallerException(ex);
+        }
     }
 }
